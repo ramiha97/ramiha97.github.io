@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rami Hamzi | AI & Software Developer</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Space Grotesk', sans-serif; }
+    .primary { color: #00aaff; }
+    .bg-primary { background-color: #00aaff; }
+    .bg-dark { background-color: #0b141a; }
+  </style>
+</head>
+
+<body class="bg-dark text-gray-200">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 md:px-16 py-4 border-b border-gray-700">
+    <h1 class="text-xl md:text-2xl font-bold text-[#00aaff]">Rami Hamzi</h1>
+    <nav class="hidden md:flex gap-8 text-gray-300">
+      <a href="#about" class="hover:text-[#00aaff]">About</a>
+      <a href="#experience" class="hover:text-[#00aaff]">Experience</a>
+      <a href="#projects" class="hover:text-[#00aaff]">Projects</a>
+      <a href="#skills" class="hover:text-[#00aaff]">Skills</a>
+      <a href="#contact" class="hover:text-[#00aaff]">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+<!-- Hero -->
+<section class="flex flex-col md:flex-row items-center md:items-start justify-start px-6 md:px-16 py-16 gap-8">
+  <!-- Left side: Text -->
+  <div class="text-left md:w-1/2">
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+      Building Scalable AI-Powered Systems
+    </h2>
+    <p class="text-gray-400 max-w-md">
+      Software Engineer with 3 years of experience architecting distributed systems, developing AI models, and creating intelligent software solutions.
+    </p>
+    <div class="mt-8 flex justify-start gap-4">
+      <a href="#projects" class="bg-primary px-6 py-3 rounded-lg font-bold text-white hover:opacity-90 transition">View Projects</a>
+      <a href="#contact" class="bg-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-700 transition">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- Right side: Image -->
+  <div class="md:w-1/3 flex justify-start">
+    <img
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXgCHrHpZJZ9wTiZA5aKEAWg3cPzrqN9gaYeGfvnqetqqbYa3i3Z3D5lJCm1Jx0dXK4EbxHzFas5r2j39ov30XHgulXb_VItUL36oqW2o2WWRqmfXYWXauI1-M0xbqkFdOoikREHU7H-w1LjDhssXG-CEnTSyk8_XUJEuflT6lf4YNbuBvYb1axSVwZcVG_yCJZ-TRvg37QcLY3UsqIC4I-GfjFH9hBmIbDTsz1JjRDAIcSmpcaYwLIwkcvqMsnPe5CVOvbTCk9V8"
+      alt="Rami Hamzi"
+      class="rounded-2xl shadow-lg w-80 md:w-[450px] border border-gray-700 object-cover"
+    />
+  </div>
+</section>
+
+
+
+
+  <!-- About -->
+  <section id="about" class="px-6 md:px-16 py-10">
+    <h3 class="text-2xl font-bold text-white mb-4">About Me</h3>
+    <p class="text-gray-400 leading-relaxed max-w-3xl">
+      I’m an AI and software developer with a passion for solving complex technical problems and designing efficient systems.
+      I started programming at age 15 and currently specialize in backend engineering, machine learning, and cloud systems.
+      I’ve built high-performance APIs, AI-based automation, and distributed architectures capable of handling over a million requests daily.
+      My goal is to keep pushing boundaries between AI and scalable software engineering.
+    </p>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="px-6 md:px-16 py-10 bg-gray-900">
+    <h3 class="text-2xl font-bold text-white mb-4">Experience</h3>
+    <div class="max-w-3xl">
+      <h4 class="text-lg font-semibold text-[#00aaff]">Software Developer – Undisclosed Company (Kefar Sava)</h4>
+      <p class="text-sm text-gray-400 mb-3">Oct 2022 – Present</p>
+      <ul class="list-disc ml-5 text-gray-400 space-y-2 text-sm">
+        <li>Architected scalable distributed systems handling over 1M+ requests/day with 99.99% uptime.</li>
+        <li>Led AI projects integrating LLMs, computer vision, and recommendation engines.</li>
+        <li>Designed microservice and event-driven backends with high availability.</li>
+        <li>Implemented REST APIs and asynchronous data processing pipelines for real-time systems.</li>
+        <li>Managed cloud-native deployments using Docker, Kubernetes, AWS, and GCP.</li>
+        <li>Mentored a team of 4 engineers, enforcing clean code and performance optimization.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="px-6 md:px-16 py-10">
+    <h3 class="text-2xl font-bold text-white mb-6">Projects</h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Each project opens a modal -->
+      <div onclick="openModal('modalSummarizer')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="   https://cdn-icons-png.flaticon.com/512/17030/17030675.png " class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">AI Text Summarization</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
+      <div onclick="openModal('modalFace')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/19008/19008919.png" class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">Face Recognition System</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
+      <div onclick="openModal('modalChatbot')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/900/900961.png" class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">Generative AI Chatbot</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
+      <div onclick="openModal('modalGIS')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/3434/3434892.png" class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">GIS System Analysis</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
+      <div onclick="openModal('modalLLM')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/17744/17744958.png" class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">Student-Teacher LLM Training</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
+      <div onclick="openModal('modalVideo')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/4424/4424772.png" class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">AI Video Generator</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="px-6 md:px-16 py-10 bg-gray-900">
+<h4 class="text-[#00aaff] font-semibold mb-2">Programming Languages</h4> <div class="flex flex-wrap gap-3 mb-4"> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Python</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">JavaScript</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">C++</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Java</span> </div> <h4 class="text-[#00aaff] font-semibold mb-2">AI / Machine Learning</h4> <div class="flex flex-wrap gap-3 mb-4"> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">PyTorch</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">TensorFlow</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">LoRA</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">RAG</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">OpenAI API</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">Computer Vision</span> </div> <h4 class="text-[#00aaff] font-semibold mb-2">Backend & DevOps</h4> <div class="flex flex-wrap gap-3 mb-4"> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">Flask</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">FastAPI</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">Docker</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">Kubernetes</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">AWS</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">GCP</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">Redis</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">PostgreSQL</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm">MongoDB</span> </div> <h4 class="text-[#00aaff] font-semibold mb-2">Languages</h4> <div class="flex flex-wrap gap-3"> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">English</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Hebrew</span> <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Arabic</span> </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="px-6 md:px-16 py-10 text-center">
+    <h3 class="text-2xl font-bold text-white mb-3">Let's Connect</h3>
+    <p class="text-gray-400 mb-6">Interested in collaborating or hiring? Reach out below.</p>
+    <a href="mailto:ram1hamzi1997@gmail.com" class="bg-primary px-6 py-3 rounded-lg font-bold text-white hover:opacity-90 transition">Email Me</a>
+    <div class="flex justify-center gap-6 mt-8">
+      <a href="https://www.linkedin.com/in/rami-hamzi-1a415721b" target="_blank" class="hover:text-[#00aaff] transition">LinkedIn</a>
+      <a href="https://github.com/ramiha97" target="_blank" class="hover:text-[#00aaff] transition">GitHub</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 border-t border-gray-700 text-gray-500 text-sm">
+    © 2025 Rami Hamzi. All Rights Reserved.
+  </footer>
+
+  <!-- Modals -->
+  <div id="modalSummarizer" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+      <h3 class="text-xl font-bold mb-2 text-white">AI Text Summarization</h3>
+      <p class="text-sm mb-4">
+        I developed an AI-powered text summarization system designed to efficiently condense large volumes of text using LLMs and vector-based clustering techniques.
+The system intelligently reduces the text length before sending it to the model by applying semantic vectorization and K-Means clustering, ensuring that only the most contextually relevant content is summarized.
+This approach significantly optimized processing time and reduced API costs while maintaining high-quality summaries.
+      </p>
+      <ul class="list-disc ml-5 text-sm mb-4">
+        <li>⚙️ Tools & Techniques
+
+AWS Bedrock LLM for large-scale text summarization
+
+SentenceTransformers for high-dimensional text embeddings
+
+Scikit-learn (K-Means) for clustering and vector reduction
+
+NumPy & Pandas for data processing and feature management</li>
+        <li>Tech Stack
+
+Language: Python
+
+AI/ML Frameworks: AWS Bedrock, Transformers, SentenceTransformers
+
+Libraries: Scikit-learn, NumPy, Pandas
+
+Architecture: Embedding → Clustering → LLM Summarization Pipeline</li>
+      </ul>
+      <button onclick="closeModal('modalSummarizer')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    </div>
+  </div>
+
+  <div id="modalFace" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+      <h3 class="text-xl font-bold mb-2 text-white">Face Recognition System</h3>
+      <p class="text-sm mb-4">
+        I developed an AI-powered face recognition system that identifies and retrieves matching faces from large datasets with high accuracy and speed.
+The system extracts facial embeddings using an InsightFace model deployed on a GPU-enabled EC2 instance, then performs nearest-vector searches in a Zilliz vector database to find similar faces.
+Matched vectors are linked to their corresponding images stored in Amazon S3 and enriched with metadata from MongoDB.
+All processes are orchestrated through an ECS-hosted API, providing seamless, real-time face identification and data retrieval for clients..
+      </p>
+      <ul class="list-disc ml-5 text-sm mb-4">
+        <li>Machine Learning & AI: InsightFace, PyTorch
+
+Infrastructure: AWS EC2 (GPU), AWS ECS, AWS S3
+
+Databases: Zilliz (Milvus) for vector storage, MongoDB Atlas for metadata
+
+Backend Framework: Fastapi (Python)
+
+</li>
+      </ul>
+      <button onclick="closeModal('modalFace')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    </div>
+  </div>
+
+  <div id="modalChatbot" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+      <h3 class="text-xl font-bold mb-2 text-white">Generative AI Chatbot</h3>
+      <p class="text-sm mb-4">
+        I developed an AI-powered chatbot built on Amazon Bedrock using large language models (LLMs) to deliver intelligent, context-aware interactions.
+The chatbot is personalized for a specific application through Retrieval-Augmented Generation (RAG) and advanced prompt engineering, enabling it to access domain-specific knowledge and provide accurate, real-time responses.
+This architecture ensures dynamic, adaptive conversations tailored to each user’s needs while maintaining high scalability and reliability.
+      </p>
+      <ul class="list-disc ml-5 text-sm mb-4">
+        <li>Tech:
+        AI & NLP: Amazon Bedrock, Large Language Models (LLMs), Prompt Engineering, RAG
+
+Backend Framework: Fastaspi (Python)
+
+Data Layer: Vector Database (Zilliz)
+
+Languages: Python
+        </li>
+      </ul>
+      <button onclick="closeModal('modalChatbot')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    </div>
+  </div>
+
+  <div id="modalGIS" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+      <h3 class="text-xl font-bold mb-2 text-white">GIS System Analysis</h3>
+      <p class="text-sm mb-4">
+        I developed a GIS-based analytical mapping system capable of visualizing and analyzing millions of geospatial data points in real time.
+The system leverages K-Means clustering to efficiently group large-scale location data, providing meaningful spatial insights and pattern detection.
+All data is managed and queried through Amazon RDS PostgreSQL with PostGIS extensions, enabling high-performance geospatial computations and map rendering.
+      </p>
+      <ul class="list-disc ml-5 text-sm mb-4">
+        <li>Tech: Data Processing & Analytics: K-Means Clustering
+
+Database: PostgreSQL with PostGIS (Amazon RDS)
+
+Backend Framework: Fastapi (Python)
+
+Visualization & Mapping: Leaflet.js, GeoJSON
+
+Cloud & Infrastructure: AWS RDS, EC2, S3
+
+Languages: SQL, JavaScript
+</li>
+      </ul>
+      <button onclick="closeModal('modalGIS')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    </div>
+  </div>
+
+  <div id="modalLLM" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+      <h3 class="text-xl font-bold mb-2 text-white">Student-Teacher LLM Training System</h3>
+      <p class="text-sm mb-4">
+        Built a teacher-student fine-tuning framework using Phi-2.7 for structured JSON generation from unstructured data.
+      </p>
+      <ul class="list-disc ml-5 text-sm mb-4">
+        <li>Tech: PyTorch, Phi-2.7, Ollama, JSON schema extraction</li>
+      </ul>
+      <a href="https://github.com/ramiha97/student-teacher-llm" target="_blank" class="text-[#00aaff] hover:underline block mb-4">View GitHub →</a>
+      <button onclick="closeModal('modalLLM')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    </div>
+  </div>
+
+  <div id="modalVideo" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+      <h3 class="text-xl font-bold mb-2 text-white">AI Video Generator</h3>
+      <p class="text-sm mb-4">
+        Automated cinematic video creation using JSON-based scene breakdowns, integrating Veo3, ElevenLabs, and FFmpeg for end-to-end video synthesis.
+      </p>
+      <ul class="list-disc ml-5 text-sm mb-4">
+        <li>Tech: Python, FFmpeg, Veo3, ElevenLabs, Leonardo AI</li>
+      </ul>
+      <a href="https://github.com/ramiha97/video_generator" target="_blank" class="text-[#00aaff] hover:underline block mb-4">View GitHub →</a>
+      <button onclick="closeModal('modalVideo')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    </div>
+  </div>
+
+  <!-- Modal JS -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
