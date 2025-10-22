@@ -177,14 +177,17 @@
     © 2025 Rami Hamzi. All Rights Reserved.
   </footer>
 
+
   <!-- Modals -->
   <div id="modalSummarizer" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
     <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
       <h3 class="text-xl font-bold mb-2 text-white">AI Text Summarization</h3>
       <p class="text-sm mb-4">
-        I developed an AI-powered text summarization system designed to efficiently condense large volumes of text using LLMs and vector-based clustering techniques.
-The system intelligently reduces the text length before sending it to the model by applying semantic vectorization and K-Means clustering, ensuring that only the most contextually relevant content is summarized.
-This approach significantly optimized processing time and reduced API costs while maintaining high-quality summaries.
+        I developed an AI-driven text summarization and knowledge clustering system designed to efficiently process and condense large textual inputs into concise, context-rich summaries. The system leverages Amazon Bedrock to access advanced LLMs such as Claude 3 Sonnet, while incorporating intelligent preprocessing steps—including semantic embedding, clustering, and prompt engineering—to optimize model efficiency and reduce token consumption.
+
+Incoming text data is first embedded using Amazon Titan Embeddings, transforming raw text into high-dimensional semantic vectors. A KMeans clustering algorithm groups related segments to ensure thematic coherence, and representative samples from each cluster are selected to form a balanced, information-dense input. The system then dynamically constructs tailored prompts through prompt engineering techniques, guiding the LLM to produce structured, factual, and stylistically consistent summaries.
+
+The entire service runs as a microservice within an Amazon EKS cluster, ensuring horizontal scalability and high availability. Each summarization pod runs on optimized CPU-based EC2 nodes, with auto-scaling configured through Kubernetes HPA to handle variable workloads efficiently. A FastAPI (Python) backend orchestrates the end-to-end process—from text ingestion and semantic preprocessing to Bedrock LLM inference and structured output formatting—delivering low-latency, real-time summarization via REST API endpoints.
       </p>
       <ul class="list-disc ml-5 text-sm mb-4">
         <li>⚙️ Tools & Techniques
@@ -214,19 +217,24 @@ Architecture: Embedding → Clustering → LLM Summarization Pipeline</li>
     <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
       <h3 class="text-xl font-bold mb-2 text-white">Face Recognition System</h3>
       <p class="text-sm mb-4">
-        I developed an AI-powered face recognition system that identifies and retrieves matching faces from large datasets with high accuracy and speed.
-The system extracts facial embeddings using an InsightFace model deployed on a GPU-enabled EC2 instance, then performs nearest-vector searches in a Zilliz vector database to find similar faces.
-Matched vectors are linked to their corresponding images stored in Amazon S3 and enriched with metadata from MongoDB.
-All processes are orchestrated through an ECS-hosted API, providing seamless, real-time face identification and data retrieval for clients..
+    I developed an AI-powered face recognition system that identifies and retrieves matching faces from large-scale datasets with high accuracy and speed. The system extracts facial embeddings using an InsightFace model deployed on a GPU-enabled EC2 node within an Amazon EKS cluster, ensuring efficient, parallelized inference at scale.
+
+All vectorized embeddings are indexed in a Zilliz (Milvus) vector database for high-speed similarity searches, enabling real-time nearest-vector retrieval. Each matched vector is linked to its corresponding image stored in Amazon S3 and enriched with metadata from MongoDB Atlas for context-aware results.
+
+The entire pipeline — from inference to retrieval — is containerized and orchestrated via Amazon EKS, leveraging Kubernetes for auto-scaling, high availability, and workload isolation. A FastAPI (Python) backend exposes these capabilities through a unified API layer, delivering seamless, real-time face identification and data retrieval for clients.
       </p>
       <ul class="list-disc ml-5 text-sm mb-4">
-        <li>Machine Learning & AI: InsightFace, PyTorch
+        <li>Tech Stack:
 
-Infrastructure: AWS EC2 (GPU), AWS ECS, AWS S3
+Machine Learning & AI: InsightFace, PyTorch
+
+Infrastructure: Amazon EKS (GPU Nodes on EC2), Amazon S3
 
 Databases: Zilliz (Milvus) for vector storage, MongoDB Atlas for metadata
 
-Backend Framework: Fastapi (Python)
+Backend Framework: FastAPI (Python)
+
+Architecture: Microservices orchestrated with Kubernetes, auto-scaling GPU inference pods, and REST API endpoints for client interaction
 
 </li>
       </ul>
@@ -261,20 +269,12 @@ Languages: Python
     <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
       <h3 class="text-xl font-bold mb-2 text-white">GIS System Analysis</h3>
       <p class="text-sm mb-4">
-        I developed a GIS-based analytical mapping system capable of visualizing and analyzing millions of geospatial data points in real time.
+       GIS-based analytical mapping system capable of visualizing and analyzing millions of geospatial data points in real time.
 The system leverages K-Means clustering to efficiently group large-scale location data, providing meaningful spatial insights and pattern detection.
 All data is managed and queried through Amazon RDS PostgreSQL with PostGIS extensions, enabling high-performance geospatial computations and map rendering.
       </p>
       <ul class="list-disc ml-5 text-sm mb-4">
         <li>Tech: Data Processing & Analytics: K-Means Clustering
-
-Database: PostgreSQL with PostGIS (Amazon RDS)
-
-Backend Framework: Fastapi (Python)
-
-Visualization & Mapping: Leaflet.js, GeoJSON
-
-Cloud & Infrastructure: AWS RDS, EC2, S3
 
 Languages: SQL, JavaScript
 </li>
@@ -282,6 +282,7 @@ Languages: SQL, JavaScript
       <button onclick="closeModal('modalGIS')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
     </div>
   </div>
+
 
   <div id="modalLLM" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
     <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
