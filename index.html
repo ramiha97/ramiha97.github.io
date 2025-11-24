@@ -103,6 +103,16 @@
         </div>
       </div>
 
+      <div onclick="openModal('stf')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/2222/2222908.png  " class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">SW/HW Android Farm</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
       <div onclick="openModal('modalFace')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
           <img src="https://cdn-icons-png.flaticon.com/512/19008/19008919.png" class="h-24 w-auto object-contain" alt="">
@@ -177,7 +187,6 @@
     © 2025 Rami Hamzi. All Rights Reserved.
   </footer>
 
-
   <!-- Modals -->
   <div id="modalSummarizer" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
     <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
@@ -212,6 +221,33 @@ Architecture: Embedding → Clustering → LLM Summarization Pipeline</li>
       <button onclick="closeModal('modalSummarizer')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
     </div>
   </div>
+
+  <!-- Modals -->
+  <div id="stf" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+      <h3 class="text-xl font-bold mb-2 text-white">AI Text Summarization</h3>
+      <p class="text-sm mb-4">
+       ChatGPT said:Built a multi-device Android automation platform where software agents directly control physical hardware through STF and ADB.
+Designed a scalable system coordinating dozens of real devices to perform automated tasks in parallel for a specific workflow.
+Developed Python services that remotely issue commands, collect data, and monitor device states in real time.
+Integrated MongoDB to store device activity, task history, and AI-driven decision outputs for full traceability.
+Implemented AI agents that dynamically assign tasks to the most optimal device, improving efficiency and reliability.
+Delivered a complete SW/HW integration solution that unifies automation logic, hardware orchestration, data management, and intelligent task execution.
+      </p>
+      <ul class="list-disc ml-5 text-sm mb-4">
+        <li>⚙️ Tools & Techniques
+
+STF
+ADB
+Python
+MongoDB
+AI Agents (custom automation logic)
+Multi-device Android hardware cluster
+      </ul>
+      <button onclick="closeModal('stf')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    </div>
+  </div>
+
 
   <div id="modalFace" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
     <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
@@ -282,7 +318,6 @@ Languages: SQL, JavaScript
       <button onclick="closeModal('modalGIS')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
     </div>
   </div>
-
 
   <div id="modalLLM" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
     <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
