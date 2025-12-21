@@ -206,8 +206,10 @@ My work revolves around combining modern engineering techniques with intelligent
   <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Multiprocessing</span>
   <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">REST APIs</span>
   <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">AWS (EKS, EC2, Bedrock, ALB, CloudWatch)</span>
+  <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">DynamoDB</span>
+  <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">S3 amazon</span>
   <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">PostgreSQL</span>
-  <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">MongoDB</span>
+  <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">zillus</span>
   <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">CI/CD (GitHub Actions)</span>
 
 </div>
@@ -279,7 +281,7 @@ Architecture: Embedding → Clustering → LLM Summarization Pipeline</li>
        Built a multi-device Android automation platform where software agents directly control physical hardware through STF and ADB.
 Designed a scalable system coordinating dozens of real devices to perform automated tasks in parallel for a specific workflow.
 Developed Python services that remotely issue commands, collect data, and monitor device states in real time.
-Integrated MongoDB to store device activity, task history, and AI-driven decision outputs for full traceability.
+Integrated DynamoDB to store device activity, task history, and AI-driven decision outputs for full traceability.
 Implemented AI agents that dynamically assign tasks to the most optimal device, improving efficiency and reliability.
 Delivered a complete SW/HW integration solution that unifies automation logic, hardware orchestration, data management, and intelligent task execution.
       </p>
@@ -289,7 +291,7 @@ Delivered a complete SW/HW integration solution that unifies automation logic, h
 STF
 ADB
 Python
-MongoDB
+DynamoDB
 AI Agents (custom automation logic)
 Multi-device Android hardware cluster
       </ul>
@@ -304,7 +306,7 @@ Multi-device Android hardware cluster
       <p class="text-sm mb-4">
     I developed an AI-powered face recognition system that identifies and retrieves matching faces from large-scale datasets with high accuracy and speed. The system extracts facial embeddings using an InsightFace model deployed on a GPU-enabled EC2 node within an Amazon EKS cluster, ensuring efficient, parallelized inference at scale.
 
-All vectorized embeddings are indexed in a Zilliz (Milvus) vector database for high-speed similarity searches, enabling real-time nearest-vector retrieval. Each matched vector is linked to its corresponding image stored in Amazon S3 and enriched with metadata from MongoDB Atlas for context-aware results.
+All vectorized embeddings are indexed in a Zilliz (Milvus) vector database for high-speed similarity searches, enabling real-time nearest-vector retrieval. Each matched vector is linked to its corresponding image stored in Amazon S3 and enriched with metadata from DynamoDB Atlas for context-aware results.
 
 The entire pipeline — from inference to retrieval — is containerized and orchestrated via Amazon EKS, leveraging Kubernetes for auto-scaling, high availability, and workload isolation. A FastAPI (Python) backend exposes these capabilities through a unified API layer, delivering seamless, real-time face identification and data retrieval for clients.
       </p>
@@ -315,7 +317,7 @@ Machine Learning & AI: InsightFace, PyTorch
 
 Infrastructure: Amazon EKS (GPU Nodes on EC2), Amazon S3
 
-Databases: Zilliz (Milvus) for vector storage, MongoDB Atlas for metadata
+Databases: Zilliz (Milvus) for vector storage, DynamoDB  for metadata
 
 Backend Framework: FastAPI (Python)
 
