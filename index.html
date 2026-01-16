@@ -98,7 +98,7 @@ My work revolves around combining modern engineering techniques with intelligent
       <!-- Each project opens a modal -->
       <div onclick="openModal('modalSummarizer')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
-          <img src="   https://cdn-icons-png.flaticon.com/512/17030/17030675.png " class="h-24 w-auto object-contain" alt="">
+          <img src=" https://cdn-icons-png.flaticon.com/512/7635/7635873.png " class="h-24 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">AI Text Summarization</h4>
@@ -108,7 +108,7 @@ My work revolves around combining modern engineering techniques with intelligent
 
       <div onclick="openModal('stf')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/2222/2222908.png  " class="h-24 w-auto object-contain" alt="">
+          <img src="https://cdn-icons-png.flaticon.com/512/15484/15484915.png   " class="h-24 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">SW/HW Android Farm</h4>
@@ -118,7 +118,7 @@ My work revolves around combining modern engineering techniques with intelligent
 
       <div onclick="openModal('modalFace')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/19008/19008919.png" class="h-24 w-auto object-contain" alt="">
+          <img src="https://cdn-icons-png.flaticon.com/512/1461/1461141.png" class="h-24 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">Face Recognition System</h4>
@@ -128,7 +128,7 @@ My work revolves around combining modern engineering techniques with intelligent
 
       <div onclick="openModal('modalChatbot')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/900/900961.png" class="h-24 w-auto object-contain" alt="">
+          <img src="https://cdn-icons-png.flaticon.com/512/2593/2593635.png" class="h-24 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">Generative AI Chatbot</h4>
@@ -138,7 +138,7 @@ My work revolves around combining modern engineering techniques with intelligent
 
       <div onclick="openModal('modalGIS')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/3434/3434892.png" class="h-24 w-auto object-contain" alt="">
+          <img src=" https://cdn-icons-png.flaticon.com/512/854/854929.png " class="h-24 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">GIS System Analysis</h4>
@@ -148,7 +148,7 @@ My work revolves around combining modern engineering techniques with intelligent
 
       <div onclick="openModal('modalLLM')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/17744/17744958.png" class="h-24 w-auto object-contain" alt="">
+          <img src="https://cdn-icons-png.flaticon.com/512/19012/19012509.png" class="h-24 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">Student-Teacher LLM Training</h4>
@@ -158,7 +158,7 @@ My work revolves around combining modern engineering techniques with intelligent
 
       <div onclick="openModal('modalVideo')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/4424/4424772.png" class="h-24 w-auto object-contain" alt="">
+          <img src="https://cdn-icons-png.flaticon.com/512/18997/18997527.png" class="h-24 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">AI Video Generator</h4>
@@ -240,131 +240,465 @@ My work revolves around combining modern engineering techniques with intelligent
   </footer>
 
   <!-- Modals -->
-  <div id="modalSummarizer" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
-      <h3 class="text-xl font-bold mb-2 text-white">AI Text Summarization</h3>
-      <p class="text-sm mb-4">
-        I developed an AI-driven text summarization and knowledge clustering system designed to efficiently process and condense large textual inputs into concise, context-rich summaries. The system leverages Amazon Bedrock to access advanced LLMs, while incorporating intelligent preprocessing steps—including semantic embedding, clustering, and prompt engineering—to optimize model efficiency and reduce token consumption.
+ <!-- Modal: Summarizer -->
+<div id="modalSummarizer" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
 
-Incoming text data is first embedded using Amazon Titan Embeddings, transforming raw text into high-dimensional semantic vectors. A KMeans clustering algorithm groups related segments to ensure thematic coherence, and representative samples from each cluster are selected to form a balanced, information-dense input. The system then dynamically constructs tailored prompts through prompt engineering techniques, guiding the LLM to produce structured, factual, and stylistically consistent summaries.
+    <!-- Header -->
+    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+      <div>
+        <h3 class="text-2xl font-bold text-white">AI Text Summarization</h3>
+        <p class="text-sm text-gray-400 mt-1">
+          Bedrock-powered summarization + semantic clustering for token-efficient, coherent outputs.
+        </p>
+      </div>
 
-The entire service runs as a microservice within an Amazon EKS cluster, ensuring horizontal scalability and high availability. Each summarization pod runs on optimized CPU-based EC2 nodes, with auto-scaling configured through Kubernetes HPA to handle variable workloads efficiently. A FastAPI (Python) backend orchestrates the end-to-end process—from text ingestion and semantic preprocessing to Bedrock LLM inference and structured output formatting—delivering low-latency, real-time summarization via REST API endpoints.
-      </p>
-      <ul class="list-disc ml-5 text-sm mb-4">
-        <li>⚙️ Tools & Techniques
+      <button onclick="closeModal('modalSummarizer')"
+        class="text-gray-400 hover:text-white transition text-2xl leading-none">
+        &times;
+      </button>
+    </div>
 
-AWS Bedrock LLM for large-scale text summarization
+    <!-- Body -->
+    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
 
-SentenceTransformers for high-dimensional text embeddings
+      <!-- Overview -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Overview</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          I developed an AI-driven text summarization and knowledge clustering system that condenses large inputs into concise,
+          context-rich summaries. It uses Amazon Bedrock for LLM inference, plus semantic preprocessing (embedding + clustering)
+          to reduce token usage while keeping thematic coherence.
+        </p>
+      </section>
 
-Scikit-learn (K-Means) for clustering and vector reduction
+      <!-- Pipeline -->
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">How it works</h4>
 
-NumPy & Pandas for data processing and feature management</li>
-        <li>Tech Stack
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">1) Embed</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Incoming text is embedded with <span class="text-white">Amazon Titan Embeddings</span> into semantic vectors.
+            </p>
+          </div>
 
-Language: Python
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">2) Cluster</p>
+            <p class="text-sm text-gray-300 mt-1">
+              <span class="text-white">Greedy Cluster</span> groups related segments to keep summaries thematically coherent.
+            </p>
+          </div>
 
-AI/ML Frameworks: AWS Bedrock, Transformers, SentenceTransformers
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">3) Select Representatives</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Representative samples are picked from clusters to form a balanced, information-dense prompt input.
+            </p>
+          </div>
 
-Libraries: Scikit-learn, NumPy, Pandas
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">4) Summarize</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Prompt engineering guides Bedrock LLMs to produce structured, factual, consistent summaries.
+            </p>
+          </div>
+        </div>
+      </section>
 
-Architecture: Embedding → Clustering → LLM Summarization Pipeline</li>
-      </ul>
-      <button onclick="closeModal('modalSummarizer')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+      <!-- Deployment -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Infrastructure</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Runs as a microservice inside an <span class="text-white">Amazon EKS</span> cluster for scalability and availability.
+          Pods run on optimized CPU EC2 nodes. A
+          <span class="text-white">FastAPI</span> backend orchestrates ingestion → preprocessing → Bedrock inference → formatted output.
+        </p>
+      </section>
+
+      <!-- Tools -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tools & Techniques</h4>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>AWS Bedrock LLM for large-scale summarization</li>
+          <li>Amazon Titan Embeddings</li>
+          <li>Scikit-learn (greedy cluster) for clustering + reduction</li>
+          <li>NumPy & Pandas for processing and feature handling</li>
+          <li>Prompt engineering for structured outputs</li>
+        </ul>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Language</p>
+            <p class="text-white font-semibold">Python</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Backend</p>
+            <p class="text-white font-semibold">FastAPI (REST)</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">ML / AI</p>
+            <p class="text-white font-semibold">AWS Bedrock, Titan Embeddings</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Deployment</p>
+            <p class="text-white font-semibold">Amazon EKS</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="p-6 border-t border-white/10 flex justify-end">
+      <button onclick="closeModal('modalSummarizer')"
+        class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
+        Close
+      </button>
     </div>
   </div>
+</div>
 
-  <!-- Modals -->
-  <div id="stf" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
-      <h3 class="text-xl font-bold mb-2 text-white">AI Text Summarization</h3>
-      <p class="text-sm mb-4">
-       Built a multi-device Android automation platform where software agents directly control physical hardware through STF and ADB.
-Designed a scalable system coordinating dozens of real devices to perform automated tasks in parallel for a specific workflow.
-Developed Python services that remotely issue commands, collect data, and monitor device states in real time.
-Integrated DynamoDB to store device activity, task history, and AI-driven decision outputs for full traceability.
-Implemented AI agents that dynamically assign tasks to the most optimal device, improving efficiency and reliability.
-Delivered a complete SW/HW integration solution that unifies automation logic, hardware orchestration, data management, and intelligent task execution.
-      </p>
-      <ul class="list-disc ml-5 text-sm mb-4">
-        <li>⚙️ Tools & Techniques
+<!-- Modal: STF / Android Automation -->
+<div id="stf" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
 
-STF
-ADB
-Python
-AI Agents (custom automation logic)
-Multi-device Android hardware cluster
-      </ul>
-      <button onclick="closeModal('stf')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    <!-- Header -->
+    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+      <div>
+        <h3 class="text-2xl font-bold text-white">Multi-Device Android Automation (STF + ADB)</h3>
+        <p class="text-sm text-gray-400 mt-1">
+          Scalable platform where software agents orchestrate real Android devices in parallel.
+        </p>
+      </div>
+
+      <button onclick="closeModal('stf')"
+        class="text-gray-400 hover:text-white transition text-2xl leading-none">
+        &times;
+      </button>
     </div>
-  </div>
 
+    <!-- Body -->
+    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
 
-  <div id="modalFace" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
-      <h3 class="text-xl font-bold mb-2 text-white">Face Recognition System</h3>
-      <p class="text-sm mb-4">
-    I developed an AI-powered face recognition system that identifies and retrieves matching faces from large-scale datasets with high accuracy and speed. The system extracts facial embeddings using an InsightFace model deployed on a GPU-enabled EC2 node within an Amazon EKS cluster, ensuring efficient, parallelized inference at scale.
+      <!-- Overview -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Overview</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Built a multi-device Android automation platform where software agents directly control physical hardware using
+          <span class="text-white">STF</span> and <span class="text-white">ADB</span>. The system coordinates dozens of real devices to run
+          workflow-specific tasks in parallel, with real-time monitoring, data collection, and full traceability.
+        </p>
+      </section>
 
-All vectorized embeddings are indexed in a Zilliz (Milvus) vector database for high-speed similarity searches, enabling real-time nearest-vector retrieval. Each matched vector is linked to its corresponding image stored in Amazon S3 and enriched with metadata from DynamoDB Atlas for context-aware results.
+      <!-- Key Capabilities -->
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Key capabilities</h4>
 
-The entire pipeline — from inference to retrieval — is containerized and orchestrated via Amazon EKS, leveraging Kubernetes for auto-scaling, high availability, and workload isolation. A FastAPI (Python) backend exposes these capabilities through a unified API layer, delivering seamless, real-time face identification and data retrieval for clients.
-      </p>
-      <ul class="list-disc ml-5 text-sm mb-4">
-        <li>Tech Stack:
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Parallel device orchestration</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Coordinated dozens of physical Android devices to execute automation tasks simultaneously.
+            </p>
+          </div>
 
-Machine Learning & AI: InsightFace, PyTorch
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Remote command execution</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Developed Python services that issue ADB/STF commands, collect outputs, and track device state in real time.
+            </p>
+          </div>
 
-Infrastructure: Amazon EKS (GPU Nodes on EC2), Amazon S3
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Traceability & history</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Integrated <span class="text-white">MongoDB</span> to store device activity, task history, and agent decisions.
+            </p>
+          </div>
 
-Backend Framework: FastAPI (Python)
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">AI-based task routing</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Implemented AI agents to assign tasks to the most optimal device, improving reliability and throughput.
+            </p>
+          </div>
+        </div>
+      </section>
 
-Architecture: Microservices orchestrated with Kubernetes, auto-scaling GPU inference pods, and REST API endpoints for client interaction
+      <!-- Architecture -->
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">High-level architecture</h4>
 
-</li>
-      </ul>
-      <button onclick="closeModal('modalFace')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+          <ol class="list-decimal ml-5 space-y-1">
+            <li><span class="text-white font-semibold">Device Pool:</span> real Android devices connected and exposed through STF</li>
+            <li><span class="text-white font-semibold">Control Layer:</span> Python services sending ADB/STF commands + gathering telemetry</li>
+            <li><span class="text-white font-semibold">AI Agent Scheduler:</span> selects device + dispatches tasks based on availability/health</li>
+            <li><span class="text-white font-semibold">Data Layer:</span> MongoDB for activity logs, task history, and decisions</li>
+            <li><span class="text-white font-semibold">Monitoring:</span> live device state tracking + workflow progress</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Tools & Tech -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tools & techniques</h4>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>STF (device farm management)</li>
+          <li>ADB (device control & automation)</li>
+          <li>Python (automation services + orchestration)</li>
+          <li>AI agents (custom scheduling / routing logic)</li>
+          <li>MongoDB (logs, history, decision traceability)</li>
+          <li>Multi-device Android hardware cluster</li>
+        </ul>
+      </section>
+
+      <!-- Outcome -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Outcome</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Delivered a complete SW/HW integration solution unifying automation logic, device orchestration, data management,
+          and intelligent task execution—optimized for running workflow-specific tasks at scale.
+        </p>
+      </section>
+
     </div>
-  </div>
 
-  <div id="modalChatbot" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
-      <h3 class="text-xl font-bold mb-2 text-white">Generative AI Chatbot</h3>
-      <p class="text-sm mb-4">
-        I developed an AI-powered chatbot built on Amazon Bedrock using large language models (LLMs) to deliver intelligent, context-aware interactions.
-The chatbot is personalized for a specific application through Retrieval-Augmented Generation (RAG) and advanced prompt engineering, enabling it to access domain-specific knowledge and provide accurate, real-time responses.
-This architecture ensures dynamic, adaptive conversations tailored to each user’s needs while maintaining high scalability and reliability.
-      </p>
-      <ul class="list-disc ml-5 text-sm mb-4">
-        <li>Tech:
-        AI & NLP: Amazon Bedrock, Large Language Models (LLMs), Prompt Engineering, RAG
-
-Backend Framework: Fastaspi (Python)
-
-Languages: Python
-        </li>
-      </ul>
-      <button onclick="closeModal('modalChatbot')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    <!-- Footer -->
+    <div class="p-6 border-t border-white/10 flex justify-end">
+      <button onclick="closeModal('stf')"
+        class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
+        Close
+      </button>
     </div>
+
   </div>
+</div>
 
-  <div id="modalGIS" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
-      <h3 class="text-xl font-bold mb-2 text-white">GIS System Analysis</h3>
-      <p class="text-sm mb-4">
-       GIS-based analytical mapping system capable of visualizing and analyzing millions of geospatial data points in real time.
-The system leverages K-Means clustering to efficiently group large-scale location data, providing meaningful spatial insights and pattern detection.
-All data is managed and queried through Amazon RDS PostgreSQL with PostGIS extensions, enabling high-performance geospatial computations and map rendering.
-      </p>
-      <ul class="list-disc ml-5 text-sm mb-4">
-        <li>Tech: Data Processing & Analytics: K-Means Clustering
+<!-- Modal: Face Recognition -->
+<div id="modalFace" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
 
-Languages: SQL, JavaScript
-</li>
-      </ul>
-      <button onclick="closeModal('modalGIS')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+    <!-- Header -->
+    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+      <div>
+        <h3 class="text-2xl font-bold text-white">Face Recognition System</h3>
+        <p class="text-sm text-gray-400 mt-1">
+          GPU-accelerated face identification with vector search at scale.
+        </p>
+      </div>
+
+      <button onclick="closeModal('modalFace')"
+        class="text-gray-400 hover:text-white transition text-2xl leading-none">
+        &times;
+      </button>
     </div>
+
+    <!-- Body -->
+    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+
+      <!-- Overview -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Overview</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Developed an AI-powered face recognition system capable of identifying and retrieving matching faces from
+          large-scale datasets with high accuracy and low latency. The system is optimized for real-time inference,
+          scalable retrieval, and metadata-enriched results.
+        </p>
+      </section>
+
+      <!-- Core Pipeline -->
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Recognition pipeline</h4>
+
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">1) Face embedding extraction</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Facial embeddings are generated using an <span class="text-white">InsightFace</span> model running on
+              GPU-enabled EC2 nodes for parallelized inference.
+            </p>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">2) Vector indexing & search</p>
+            <p class="text-sm text-gray-300 mt-1">
+              All embeddings are indexed in <span class="text-white">Zilliz / Milvus</span>, enabling high-speed
+              nearest-neighbor similarity searches.
+            </p>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">3) Image & metadata retrieval</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Matched vectors reference images stored in <span class="text-white">Amazon S3</span>, enriched with
+              metadata from <span class="text-white">Postgresql</span>.
+            </p>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">4) API delivery</p>
+            <p class="text-sm text-gray-300 mt-1">
+              A unified <span class="text-white">FastAPI</span> backend exposes real-time recognition and retrieval
+              via REST endpoints.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Infrastructure -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Infrastructure & scaling</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          The entire pipeline is containerized and deployed on <span class="text-white">Amazon EKS</span>, leveraging
+          Kubernetes for auto-scaling, high availability, and workload isolation. GPU inference pods scale dynamically
+          based on demand, ensuring consistent performance under load.
+        </p>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tech stack</h4>
+        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Machine Learning</p>
+            <p class="text-white font-semibold">InsightFace, PyTorch</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Vector Database</p>
+            <p class="text-white font-semibold">Zilliz / Milvus</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Infrastructure</p>
+            <p class="text-white font-semibold">Amazon EKS, EC2 (GPU), S3</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Backend</p>
+            <p class="text-white font-semibold">FastAPI (Python)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Outcome -->
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Outcome</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Delivered a production-ready face recognition platform capable of real-time identification, scalable vector
+          search, and metadata-rich results—designed for high-throughput, GPU-accelerated workloads.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="p-6 border-t border-white/10 flex justify-end">
+      <button onclick="closeModal('modalFace')"
+        class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
+        Close
+      </button>
+    </div>
+
   </div>
+</div>
+
+
+<div id="modalChatbot" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+  <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+    <h3 class="text-xl font-bold mb-3 text-white">Generative AI Chatbot</h3>
+
+    <p class="text-sm mb-4">
+      An AI-powered chatbot built on Amazon Bedrock using large language models (LLMs) to deliver intelligent,
+      context-aware, and scalable conversational experiences. The system is designed for real-world applications,
+      combining knowledge retrieval, reasoning, and real-time data access.
+    </p>
+
+    <ul class="list-disc ml-5 text-sm mb-4 space-y-2">
+      <li>
+        <span class="text-white font-semibold">Core Capabilities</span>
+        <ul class="list-disc ml-5 mt-1 space-y-1">
+          <li>Context-aware conversations powered by LLMs on Amazon Bedrock</li>
+          <li>Retrieval-Augmented Generation (RAG) for accurate, domain-specific answers</li>
+          <li>LangChain-based orchestration for tool usage, routing, and reasoning</li>
+          <li>Integrated API calls (tool/function calling) for real-time data and actions</li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="text-white font-semibold">Advanced Features</span>
+        <ul class="list-disc ml-5 mt-1 space-y-1">
+          <li>Conversation memory with per-user context and session awareness</li>
+          <li>Dynamic prompt construction and response adaptation</li>
+          <li>Fallback and confidence handling to reduce hallucinations</li>
+          <li>Scalable, production-ready architecture with guardrails</li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="text-white font-semibold">Tech Stack</span><br />
+        AI & NLP: Amazon Bedrock, LLMs, Prompt Engineering, RAG, LangChain<br />
+        Backend: FastAPI (Python)<br />
+        Integrations: Secure API Calls<br />
+        Language: Python
+      </li>
+    </ul>
+
+    <button onclick="closeModal('modalChatbot')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">
+      Close
+    </button>
+  </div>
+</div>
+
+
+<div id="modalGIS" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+  <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
+    <h3 class="text-xl font-bold mb-3 text-white">GIS System Analysis</h3>
+
+    <p class="text-sm mb-4">
+      A high-performance GIS-based analytical mapping system designed to visualize and analyze millions of geospatial data points in real time.
+      The platform transforms large-scale spatial datasets into actionable insights through clustering, spatial queries, and interactive mapping.
+    </p>
+
+    <ul class="list-disc ml-5 text-sm mb-4 space-y-2">
+      <li>
+        <span class="text-white font-semibold">Core Capabilities</span>
+        <ul class="list-disc ml-5 mt-1 space-y-1">
+          <li>Real-time visualization of large-scale geospatial datasets</li>
+          <li>K-Means clustering for spatial grouping and pattern detection</li>
+          <li>Interactive map rendering with efficient spatial indexing</li>
+          <li>High-performance querying of millions of location points</li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="text-white font-semibold">System Architecture</span>
+        <ul class="list-disc ml-5 mt-1 space-y-1">
+          <li>PostgreSQL with PostGIS extensions for geospatial data management</li>
+          <li>Optimized spatial queries and indexing for low-latency analytics</li>
+          <li>Scalable data processing pipeline for continuous data ingestion</li>
+        </ul>
+      </li>
+
+      <li>
+        <span class="text-white font-semibold">Tech Stack</span><br />
+        Data Processing & Analytics: K-Means Clustering<br />
+        Database: Amazon RDS PostgreSQL (PostGIS)<br />
+        Frontend / Mapping: JavaScript (GIS / Mapping Libraries)<br />
+        Languages: SQL, JavaScript
+      </li>
+    </ul>
+
+    <button onclick="closeModal('modalGIS')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">
+      Close
+    </button>
+  </div>
+</div>
+
 
   <div id="modalLLM" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
     <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
