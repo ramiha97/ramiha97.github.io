@@ -91,6 +91,28 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
+
+
+      <div onclick="openModal('modalBackend')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/854/854929.png" class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">Modern backend</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
+      <div onclick="openModal('modalScraper')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/2593/2593635.png" class="h-24 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">Data Ingestion & Scraping Pipeline</h4>
+          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+        </div>
+      </div>
+
       <!-- Each project opens a modal -->
       <div onclick="openModal('modalSummarizer')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
         <div class="flex justify-center bg-gray-800 py-8">
@@ -122,25 +144,6 @@
         </div>
       </div>
 
-      <div onclick="openModal('modalChatbot')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
-        <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/2593/2593635.png" class="h-24 w-auto object-contain" alt="">
-        </div>
-        <div class="p-5">
-          <h4 class="font-semibold text-lg text-white">Generative AI Chatbot</h4>
-          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
-        </div>
-      </div>
-
-      <div onclick="openModal('modalGIS')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
-        <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/854/854929.png" class="h-24 w-auto object-contain" alt="">
-        </div>
-        <div class="p-5">
-          <h4 class="font-semibold text-lg text-white">GIS System Analysis</h4>
-          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
-        </div>
-      </div>
 
     </div>
   </section>
@@ -257,72 +260,568 @@
   </footer>
 
   <!-- Modals -->
-  <!-- Modal: Summarizer -->
-  <div id="modalSummarizer" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-    <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
-      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
-        <div>
-          <h3 class="text-2xl font-bold text-white">AI Text Summarization</h3>
-          <p class="text-sm text-gray-400 mt-1">
-            Bedrock-powered summarization + semantic clustering for token-efficient, coherent outputs.
-          </p>
+<div id="modalSummarizer" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+      <div>
+        <h3 class="text-2xl font-bold text-white">Production AI Text Summarization Pipeline</h3>
+        <p class="text-sm text-gray-400 mt-1">
+          Asynchronous AWS summarization service with semantic clustering, representative text selection, and real-time client updates.
+        </p>
+      </div>
+      <button onclick="closeModal('modalSummarizer')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
+        &times;
+      </button>
+    </div>
+
+    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Overview</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Built a production-grade <span class="text-white">AI text summarization pipeline</span> on AWS designed for large-scale text processing with asynchronous execution and real-time delivery to client applications. The client sends a summarization request and receives an immediate response, while the heavy summarization workflow runs in the background. Once processing is completed, the result is delivered back to the client through real-time communication.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">How it works</h4>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">1) Async job submission</p>
+            <p class="text-sm text-gray-300 mt-1">
+              The client sends the text payload to the API and immediately receives a response while the summarization task is dispatched to a background processing pipeline.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">2) Vector embedding + K-Means grouping</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Input text segments are converted into semantic vectors using <span class="text-white">Amazon Titan Embeddings</span>, then grouped with <span class="text-white">K-Means clustering</span> to organize similar content into coherent clusters.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">3) Representative text selection</p>
+            <p class="text-sm text-gray-300 mt-1">
+              A representative text is selected from each cluster so only the most informative content is forwarded to the summarization stage, reducing token usage and improving summary quality.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">4) LLM summarization + delivery</p>
+            <p class="text-sm text-gray-300 mt-1">
+              The selected texts are sent to an LLM on <span class="text-white">Amazon Bedrock</span> to generate the final summary, then the completed result is returned to the client through real-time update channels.
+            </p>
+          </div>
         </div>
-        <button onclick="closeModal('modalSummarizer')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
-          &times;
-        </button>
-      </div>
+      </section>
 
-      <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-        <section class="space-y-2">
-          <h4 class="text-lg font-semibold text-white">Overview</h4>
-          <p class="text-sm leading-relaxed text-gray-300">
-            I developed an AI-driven text summarization and knowledge clustering system that condenses large inputs into concise,
-            context-rich summaries. It uses Amazon Bedrock for LLM inference, plus semantic preprocessing (embedding + clustering)
-            to reduce token usage while keeping thematic coherence.
-          </p>
-        </section>
-      </div>
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Production architecture</h4>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+          <ol class="list-decimal ml-5 space-y-1">
+            <li><span class="text-white font-semibold">Client Layer:</span> the client submits summarization requests and receives an immediate acknowledgment instead of waiting for long-running processing.</li>
+            <li><span class="text-white font-semibold">API Layer:</span> the backend validates requests, stores job metadata, and dispatches summarization tasks to asynchronous workers.</li>
+            <li><span class="text-white font-semibold">Async Processing Layer:</span> background workers execute embedding generation, K-Means clustering, representative text extraction, and LLM summarization.</li>
+            <li><span class="text-white font-semibold">AI Layer:</span> Amazon Titan Embeddings generates semantic vectors and Amazon Bedrock performs the final summarization.</li>
+            <li><span class="text-white font-semibold">Data Layer:</span> job states, inputs, outputs, and processing metadata are stored for reliability, traceability, and replayability.</li>
+            <li><span class="text-white font-semibold">Delivery Layer:</span> completed summaries are pushed back to the client using WebSocket-based real-time updates.</li>
+          </ol>
+        </div>
+      </section>
 
-      <div class="p-6 border-t border-white/10 flex justify-end">
-        <button onclick="closeModal('modalSummarizer')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
-          Close
-        </button>
-      </div>
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Highlights</h4>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>Designed an async summarization workflow that returns immediately to the client while heavy AI processing runs in the background</li>
+          <li>Used semantic embeddings and K-Means clustering to reduce redundancy and preserve topical structure</li>
+          <li>Selected representative texts from each cluster to optimize token usage before LLM inference</li>
+          <li>Delivered final summaries through real-time client updates for a production-grade user experience</li>
+          <li>Built the system for reliability, scalability, observability, and large-scale text processing</li>
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tools &amp; Techniques</h4>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>Amazon Bedrock for LLM-based summarization</li>
+          <li>Amazon Titan Embeddings for semantic vector generation</li>
+          <li>K-Means clustering for grouping related text segments</li>
+          <li>Python for orchestration, preprocessing, and API integration</li>
+          <li>Asynchronous workers and real-time delivery architecture</li>
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Backend</p>
+            <p class="text-white font-semibold">REST API, Async Jobs, WebSocket, Python</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">AI / ML</p>
+            <p class="text-white font-semibold">Amazon Bedrock, Titan Embeddings, K-Means</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Architecture</p>
+            <p class="text-white font-semibold">Background Processing, Real-Time Delivery</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Cloud</p>
+            <p class="text-white font-semibold">AWS Production Services</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="p-6 border-t border-white/10 flex justify-end">
+      <button onclick="closeModal('modalSummarizer')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
+        Close
+      </button>
     </div>
   </div>
+</div>
 
-  <!-- Modal: STF / Android Automation -->
-  <div id="stf" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-    <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
-      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
-        <div>
-          <h3 class="text-2xl font-bold text-white">Multi-Device Android Automation (STF + ADB)</h3>
-          <p class="text-sm text-gray-400 mt-1">
-            Scalable platform where software agents orchestrate real Android devices in parallel.
-          </p>
+<!-- Modal: STF / Android Automation -->
+<div id="stf" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+      <div>
+        <h3 class="text-2xl font-bold text-white">24/7 Android Device Farm Automation (ADB + STF)</h3>
+        <p class="text-sm text-gray-400 mt-1">
+          Production-grade system orchestrating real Android devices with continuous execution, async processing, and real-time control.
+        </p>
+      </div>
+      <button onclick="closeModal('stf')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
+        &times;
+      </button>
+    </div>
+
+    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Overview</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Built a <span class="text-white">24/7 Android device farm automation platform</span> where software agents control real physical devices using ADB and STF. The system operates continuously, executing tasks, collecting data, and coordinating devices in parallel while maintaining full traceability and reliability for production workloads.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Core capabilities</h4>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Parallel device execution</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Orchestrates dozens of real Android devices simultaneously, enabling large-scale automation and data collection.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Async task processing</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Tasks are dispatched asynchronously, allowing the system to handle long-running workflows without blocking execution.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Real-time control & monitoring</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Device states, execution logs, and task progress are tracked in real time for full operational visibility.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Intelligent task routing</p>
+            <p class="text-sm text-gray-300 mt-1">
+              AI-based scheduling assigns tasks to optimal devices based on availability, performance, and state.
+            </p>
+          </div>
         </div>
-        <button onclick="closeModal('stf')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
-          &times;
-        </button>
-      </div>
+      </section>
 
-      <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-        <section class="space-y-2">
-          <h4 class="text-lg font-semibold text-white">Overview</h4>
-          <p class="text-sm leading-relaxed text-gray-300">
-            Built a multi-device Android automation platform where software agents directly control physical hardware using
-            <span class="text-white">STF</span> and <span class="text-white">ADB</span>.
-          </p>
-        </section>
-      </div>
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Production architecture</h4>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+          <ol class="list-decimal ml-5 space-y-1">
+            <li><span class="text-white font-semibold">Device Layer:</span> real Android devices connected and exposed via STF for remote access and control.</li>
+            <li><span class="text-white font-semibold">Control Layer:</span> backend services send ADB commands, execute workflows, and collect telemetry from devices.</li>
+            <li><span class="text-white font-semibold">Queue Layer:</span> asynchronous job queues distribute tasks across devices to ensure scalability and decoupled execution.</li>
+            <li><span class="text-white font-semibold">Processing Layer:</span> background workers handle task execution, retries, and workflow coordination.</li>
+            <li><span class="text-white font-semibold">Data Layer:</span> device logs, activity history, and execution data are stored for traceability and analytics.</li>
+            <li><span class="text-white font-semibold">Monitoring & Reliability:</span> continuous health checks, retries, and logging ensure stable 24/7 operation.</li>
+          </ol>
+        </div>
+      </section>
 
-      <div class="p-6 border-t border-white/10 flex justify-end">
-        <button onclick="closeModal('stf')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
-          Close
-        </button>
-      </div>
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tools &amp; Technologies</h4>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>ADB for low-level device control and automation</li>
+          <li>STF for device farm management and remote access</li>
+          <li>Python for orchestration and automation services</li>
+          <li>Asynchronous job queues for scalable task distribution</li>
+          <li>Database systems for logs, task history, and traceability</li>
+          <li>Real Android hardware cluster</li>
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Outcome</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Delivered a production-grade SW/HW system capable of continuously orchestrating real devices, executing automation workflows at scale, and collecting structured data with full reliability and observability.
+        </p>
+      </section>
+    </div>
+
+    <div class="p-6 border-t border-white/10 flex justify-end">
+      <button onclick="closeModal('stf')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
+        Close
+      </button>
     </div>
   </div>
+</div>
+<!-- Modal: Face Recognition -->
+<div id="modalFace" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+      <div>
+        <h3 class="text-2xl font-bold text-white">Production Face Recognition Platform</h3>
+        <p class="text-sm text-gray-400 mt-1">
+          Real-time face search system using facial embeddings, OpenSearch vector retrieval, S3 image delivery, and PostgreSQL metadata lookup.
+        </p>
+      </div>
+      <button onclick="closeModal('modalFace')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
+        &times;
+      </button>
+    </div>
+
+    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Overview</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Built a production-grade <span class="text-white">face recognition platform</span> where the client sends an image, the system extracts the facial embedding, performs similarity search against stored vectors in <span class="text-white">Amazon OpenSearch</span>, retrieves the matching identity and vector reference, then returns the final image from <span class="text-white">Amazon S3</span> together with structured metadata from <span class="text-white">PostgreSQL</span>. The platform was designed for low-latency retrieval, scalable vector search, and real-time API delivery.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Recognition pipeline</h4>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">1) Client image request</p>
+            <p class="text-sm text-gray-300 mt-1">
+              The client sends an input image to the API, which starts the face recognition workflow in real time.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">2) Face embedding extraction</p>
+            <p class="text-sm text-gray-300 mt-1">
+              A facial embedding is generated from the detected face using an <span class="text-white">InsightFace</span> model running on GPU-enabled infrastructure for fast inference.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">3) Vector similarity search</p>
+            <p class="text-sm text-gray-300 mt-1">
+              The extracted face vector is searched against stored embeddings in <span class="text-white">Amazon OpenSearch</span> to find the nearest match and return the associated identity reference.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">4) Image + metadata retrieval</p>
+            <p class="text-sm text-gray-300 mt-1">
+              After the match is found, the system retrieves the image from <span class="text-white">Amazon S3</span> and loads additional metadata from <span class="text-white">PostgreSQL</span> before returning the combined result to the client.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Production architecture</h4>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+          <ol class="list-decimal ml-5 space-y-1">
+            <li><span class="text-white font-semibold">Client Layer:</span> the client sends a face image request to the API for real-time identification and retrieval.</li>
+            <li><span class="text-white font-semibold">Inference Layer:</span> a GPU-enabled face model extracts the embedding vector from the uploaded image.</li>
+            <li><span class="text-white font-semibold">Vector Search Layer:</span> Amazon OpenSearch stores and indexes facial vectors for fast similarity search at scale.</li>
+            <li><span class="text-white font-semibold">Object Storage Layer:</span> matched images are stored in Amazon S3 and retrieved using the returned identity reference.</li>
+            <li><span class="text-white font-semibold">Metadata Layer:</span> PostgreSQL stores structured identity and contextual metadata linked to each matched image.</li>
+            <li><span class="text-white font-semibold">API Delivery Layer:</span> the backend combines vector search results, image retrieval, and metadata lookup into a single response returned to the client.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Highlights</h4>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>Designed a real-time face recognition workflow from image upload to vector search and result delivery</li>
+          <li>Stored facial embeddings in Amazon OpenSearch for scalable similarity-based retrieval</li>
+          <li>Separated vector search, image storage, and metadata storage into specialized production components</li>
+          <li>Returned final matches by combining image assets from S3 with relational metadata from PostgreSQL</li>
+          <li>Built the system for high-throughput inference, low-latency search, and production API integration</li>
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Machine Learning</p>
+            <p class="text-white font-semibold">InsightFace, PyTorch</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Vector Database</p>
+            <p class="text-white font-semibold">Amazon OpenSearch</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Storage</p>
+            <p class="text-white font-semibold">Amazon S3, PostgreSQL</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Backend / Infrastructure</p>
+            <p class="text-white font-semibold">REST API, Python, GPU Inference, AWS</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Outcome</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Delivered a production-ready face recognition system capable of converting query images into embeddings, performing similarity search on large-scale vector indexes, retrieving linked media from S3, enriching the response with PostgreSQL metadata, and returning complete results to the client in real time.
+        </p>
+      </section>
+    </div>
+
+    <div class="p-6 border-t border-white/10 flex justify-end">
+      <button onclick="closeModal('modalFace')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal: 24/7 Data Ingestion & Scraping Pipeline -->
+<div id="modalScraper" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+      <div>
+        <h3 class="text-2xl font-bold text-white">24/7 Data Ingestion & Scraping Pipeline</h3>
+        <p class="text-sm text-gray-400 mt-1">
+          Cost-efficient serverless AWS pipeline for scraping, storing raw data, transforming records, and serving structured app-ready outputs.
+        </p>
+      </div>
+      <button onclick="closeModal('modalScraper')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
+        &times;
+      </button>
+    </div>
+
+    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Overview</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Built a production-grade <span class="text-white">serverless scraping and data ingestion platform</span> on AWS designed for cost efficiency, reliability, and scalable background execution. The system operates continuously 24/7 using event-driven AWS services to trigger scraping jobs, store raw payloads for traceability, process and normalize records asynchronously, and publish structured data for application consumption. This creates a clean separation between raw ingestion and business-ready datasets while keeping infrastructure costs low.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">How I would build it on AWS</h4>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">1) Event-driven scraping</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Use <span class="text-white">AWS Lambda</span> with scheduled and queue-based triggers so scraping runs continuously in an event-driven manner while remaining cost-efficient compared to always-on servers.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">2) Raw data lake</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Store every raw response and payload in <span class="text-white">Amazon S3</span> to preserve history, support reprocessing, and maintain a full audit trail of collected source data.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">3) Async processing pipeline</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Route ingestion events through <span class="text-white">SQS</span> and background processors to validate, clean, deduplicate, and enrich records without blocking the scraping flow.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">4) App-ready database</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Write normalized data into <span class="text-white">DynamoDB</span> for scalable access and into <span class="text-white">Aurora Serverless</span> for relational querying required by the application.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Production architecture</h4>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+          <ol class="list-decimal ml-5 space-y-1">
+            <li><span class="text-white font-semibold">Trigger Layer:</span> scheduled or event-driven jobs start scraping through Lambda, so compute runs only when required.</li>
+            <li><span class="text-white font-semibold">Queue Layer:</span> ingestion events are buffered through asynchronous messaging to decouple scraping from downstream processing.</li>
+            <li><span class="text-white font-semibold">Raw Storage:</span> all original payloads and snapshots are stored in Amazon S3 as the source-of-truth data lake.</li>
+            <li><span class="text-white font-semibold">Processing Layer:</span> serverless or queue-driven workers clean, validate, normalize, classify, and enrich records before publishing them forward.</li>
+            <li><span class="text-white font-semibold">Structured Storage:</span> transformed data is written into DynamoDB and Aurora Serverless for app queries and operational usage.</li>
+            <li><span class="text-white font-semibold">Monitoring & Reliability:</span> retries, dead-letter handling, logging, and cloud monitoring keep the pipeline stable without maintaining always-on infrastructure.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">AWS services &amp; tools</h4>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>AWS Lambda for serverless scraping and lightweight processing</li>
+          <li>Amazon EventBridge for scheduled triggers and orchestration</li>
+          <li>Amazon S3 as the raw data lake and historical archive</li>
+          <li>DynamoDB and Aurora Serverless for structured, app-ready storage</li>
+          <li>SQS with dead-letter queues for asynchronous processing and retries</li>
+          <li>CloudWatch for monitoring, logs, and operational visibility</li>
+          <li>Python-based scraping, transformation, and pipeline orchestration</li>
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Key outcomes</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Designed the system around real production needs: continuous 24/7 operation, low operating cost, raw-to-structured data flow, replayability, fault tolerance, and scalable ingestion. This allows the application layer to consume clean and queryable data while preserving the original scraped content for analytics, debugging, and reprocessing.
+        </p>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Cloud</p>
+            <p class="text-white font-semibold">AWS</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Compute</p>
+            <p class="text-white font-semibold">Lambda, Event-Driven Workers</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Storage</p>
+            <p class="text-white font-semibold">S3, DynamoDB, Aurora Serverless</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Language</p>
+            <p class="text-white font-semibold">Python</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="p-6 border-t border-white/10 flex justify-end">
+      <button onclick="closeModal('modalScraper')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal: Production REST API Platform -->
+<div id="modalBackend" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+      <div>
+        <h3 class="text-2xl font-bold text-white">Production REST API Platform</h3>
+        <p class="text-sm text-gray-400 mt-1">
+          Enterprise-grade AWS backend built for reliable synchronous APIs, asynchronous processing, and real-time client updates.
+        </p>
+      </div>
+      <button onclick="closeModal('modalBackend')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
+        &times;
+      </button>
+    </div>
+
+    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Overview</h4>
+        <p class="text-sm leading-relaxed text-gray-300">
+          Built a production-level REST API platform on AWS designed to connect directly with client applications and support both <span class="text-white">synchronous</span> and <span class="text-white">asynchronous</span> workflows. The system was engineered for reliability, scalability, and low-latency communication, combining real-time API responses with background job processing for heavier workloads.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Core capabilities</h4>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Synchronous API flows</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Designed REST endpoints for immediate request-response operations where clients receive fast, reliable results in real time.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Asynchronous job processing</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Implemented background processing pipelines for long-running tasks, allowing the API to return immediately while heavy jobs continue asynchronously.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Real-time client updates</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Used <span class="text-white">WebSocket</span> communication so clients can wait for live job status updates and receive results as soon as processing is completed.
+            </p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-sm font-semibold text-white">Production reliability</p>
+            <p class="text-sm text-gray-300 mt-1">
+              Built with a production mindset including scalability, fault tolerance, decoupled services, and database patterns suited for real enterprise workloads.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <h4 class="text-lg font-semibold text-white">Architecture</h4>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+          <ol class="list-decimal ml-5 space-y-1">
+            <li><span class="text-white font-semibold">Client Layer:</span> applications connect to the backend through REST APIs for synchronous operations and WebSocket channels for live status tracking.</li>
+            <li><span class="text-white font-semibold">API Layer:</span> backend services validate requests, execute direct database operations, or dispatch heavy jobs to asynchronous workers.</li>
+            <li><span class="text-white font-semibold">Data Layer:</span> <span class="text-white">DynamoDB</span> is used for scalable key-value or session-oriented data, while <span class="text-white">Amazon Aurora</span> handles structured relational workloads and transactional operations.</li>
+            <li><span class="text-white font-semibold">Search / AI Retrieval Layer:</span> <span class="text-white">OpenSearch</span> vector indexing enables semantic search and fast retrieval for embedding-based or similarity-driven use cases.</li>
+            <li><span class="text-white font-semibold">Async Processing Layer:</span> background workers handle long-running processing jobs and publish results back to the waiting client through real-time communication channels.</li>
+            <li><span class="text-white font-semibold">Caching Layer:</span> in-memory caching with <span class="text-white">Redis (Amazon ElastiCache)</span> is used to reduce latency, offload databases, and accelerate frequently accessed query results.</li>
+            <li><span class="text-white font-semibold">Media Delivery Layer:</span> images and static assets are served via <span class="text-white">Amazon S3 + CloudFront</span> CDN for low-latency global delivery and edge caching.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Highlights</h4>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>Designed a backend that supports both immediate API responses and deferred processing workflows</li>
+          <li>Integrated DynamoDB, Aurora, and OpenSearch based on workload type and access pattern</li>
+          <li>Enabled real-time job progress and completion delivery using WebSocket connections</li>
+          <li>Built the service as a scalable, production-oriented AWS backend suitable for real client-facing systems</li>
+          <li>Applied cloud-native architectural patterns for reliability, responsiveness, and maintainability</li>
+          <li>Integrated Redis caching for database queries to significantly reduce latency and database load</li>
+          <li>Optimized image delivery using S3 with CloudFront CDN for global caching and performance</li>
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Backend</p>
+            <p class="text-white font-semibold">REST API, WebSocket, Python</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Databases</p>
+            <p class="text-white font-semibold">DynamoDB, Amazon Aurora</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Search / Vector DB</p>
+            <p class="text-white font-semibold">Amazon OpenSearch</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+            <p class="text-gray-400">Cloud</p>
+            <p class="text-white font-semibold">AWS EKS, Redis (Amazon ElastiCache), S3 + CloudFront</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="p-6 border-t border-white/10 flex justify-end">
+      <button onclick="closeModal('modalBackend')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+
 
   <!-- Modal: Face Recognition (kept as-is in your original) -->
   <!-- (Your existing modalFace / modalChatbot / modalGIS can remain unchanged) -->
