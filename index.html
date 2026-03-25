@@ -641,30 +641,30 @@
       </section>
 
       <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">How I would build it on AWS</h4>
+        <h4 class="text-lg font-semibold text-white">Architecture</h4>
         <div class="grid sm:grid-cols-2 gap-3">
           <div class="bg-white/5 border border-white/10 rounded-xl p-4">
             <p class="text-sm font-semibold text-white">1) Event-driven scraping</p>
             <p class="text-sm text-gray-300 mt-1">
-              Use <span class="text-white">AWS Lambda</span> with scheduled and queue-based triggers so scraping runs continuously in an event-driven manner while remaining cost-efficient compared to always-on servers.
+              Used <span class="text-white">AWS Lambda</span> with scheduled and queue-based triggers so scraping runs continuously in an event-driven manner while remaining cost-efficient compared to always-on servers.
             </p>
           </div>
           <div class="bg-white/5 border border-white/10 rounded-xl p-4">
             <p class="text-sm font-semibold text-white">2) Raw data lake</p>
             <p class="text-sm text-gray-300 mt-1">
-              Store every raw response and payload in <span class="text-white">Amazon S3</span> to preserve history, support reprocessing, and maintain a full audit trail of collected source data.
+              Stored every raw response and payload in <span class="text-white">Amazon S3</span> to preserve history, support reprocessing, and maintain a full audit trail of collected source data.
             </p>
           </div>
           <div class="bg-white/5 border border-white/10 rounded-xl p-4">
             <p class="text-sm font-semibold text-white">3) Async processing pipeline</p>
             <p class="text-sm text-gray-300 mt-1">
-              Route ingestion events through <span class="text-white">SQS</span> and background processors to validate, clean, deduplicate, and enrich records without blocking the scraping flow.
+              Routed ingestion events through <span class="text-white">SQS</span> and background processors to validate, clean, deduplicate, and enrich records without blocking the scraping flow.
             </p>
           </div>
           <div class="bg-white/5 border border-white/10 rounded-xl p-4">
             <p class="text-sm font-semibold text-white">4) App-ready database</p>
             <p class="text-sm text-gray-300 mt-1">
-              Write normalized data into <span class="text-white">DynamoDB</span> for scalable access and into <span class="text-white">Aurora Serverless</span> for relational querying required by the application.
+              Wrote normalized data into <span class="text-white">DynamoDB</span> for scalable access and into <span class="text-white">Aurora Serverless</span> for relational querying required by the application.
             </p>
           </div>
         </div>
@@ -674,11 +674,11 @@
         <h4 class="text-lg font-semibold text-white">Production architecture</h4>
         <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
           <ol class="list-decimal ml-5 space-y-1">
-            <li><span class="text-white font-semibold">Trigger Layer:</span> scheduled or event-driven jobs start scraping through Lambda, so compute runs only when required.</li>
+            <li><span class="text-white font-semibold">Trigger Layer:</span> scheduled start scraping through Lambda, so compute runs only when required.</li>
             <li><span class="text-white font-semibold">Queue Layer:</span> ingestion events are buffered through asynchronous messaging to decouple scraping from downstream processing.</li>
             <li><span class="text-white font-semibold">Raw Storage:</span> all original payloads and snapshots are stored in Amazon S3 as the source-of-truth data lake.</li>
             <li><span class="text-white font-semibold">Processing Layer:</span> serverless or queue-driven workers clean, validate, normalize, classify, and enrich records before publishing them forward.</li>
-            <li><span class="text-white font-semibold">Structured Storage:</span> transformed data is written into DynamoDB and Aurora Serverless for app queries and operational usage.</li>
+            <li><span class="text-white font-semibold">Structured Storage:</span> transformed data is written into DynamoDB and Aurora for app queries and operational usage.</li>
             <li><span class="text-white font-semibold">Monitoring & Reliability:</span> retries, dead-letter handling, logging, and cloud monitoring keep the pipeline stable without maintaining always-on infrastructure.</li>
           </ol>
         </div>
