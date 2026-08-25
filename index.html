@@ -1,936 +1,1214 @@
 <!DOCTYPE html>
+<!--
+  ============================================================================
+  BEFORE PUBLISHING — replace these numbers with your real ones.
+  They currently match the resume, so if you change one, change BOTH.
+
+    p95 latency 800ms -> 180ms      | ALB TargetResponseTime (p95 statistic)
+    6 microservices                 | count them
+    65% token cost reduction        | CloudWatch > AWS/Bedrock > InvocationInputTokenCount
+    <120ms API acknowledgment       | ALB TargetResponseTime on the submit endpoint
+    500k records/day                | Lambda Invocations (Sum, daily)
+    $250/month                      | Cost Explorer, filtered by tag
+    88% Redis cache hit rate        | ElastiCache CacheHits / (CacheHits + CacheMisses)
+    80% database load reduction     | RDS/Aurora DatabaseConnections + ReadIOPS before/after
+    40 devices, 8k+ tasks/day       | count them
+    ~500k requests/day  <-- STILL A PLACEHOLDER, search "REQ-VERIFY" below
+
+  Also: add your photo (search "PHOTO") and your resume PDF (search "RESUME-PDF").
+  ============================================================================
+-->
 <html class="dark" lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rami Hamzi | AI & Software Developer</title>
+  <title>Rami Hamzi | Senior Backend Engineer — AI Systems on AWS</title>
+  <meta name="description" content="Senior backend engineer with 4 years building production systems on AWS. Event-driven microservices on EKS, serverless data pipelines, and LLM systems in production. AWS Solutions Architect – Professional.">
+
+  <!-- Social preview -->
+  <meta property="og:title" content="Rami Hamzi | Senior Backend Engineer — AI Systems on AWS">
+  <meta property="og:description" content="Took a startup's prototype to production: event-driven microservices on EKS, serverless data pipelines, and LLM systems in production.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ramiha97.github.io/">
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Space Grotesk', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
     .primary { color: #00aaff; }
     .bg-primary { background-color: #00aaff; }
     .bg-dark { background-color: #0b141a; }
+    html { scroll-behavior: smooth; }
+    body.modal-open { overflow: hidden; }
+    /* Section scroll offset so the sticky header doesn't cover headings */
+    section[id] { scroll-margin-top: 5rem; }
+    .glow { box-shadow: 0 0 60px -18px rgba(0,170,255,.55); }
+    ::selection { background: #00aaff; color: #0b141a; }
   </style>
 </head>
 
-<body class="bg-dark text-gray-200">
+<body class="bg-dark text-gray-200 antialiased">
 
-  <!-- Header -->
-  <header class="flex justify-between items-center px-6 md:px-16 py-4 border-b border-gray-700">
-    <h1 class="text-xl md:text-2xl font-bold text-[#00aaff]">Rami Hamzi</h1>
-    <nav class="hidden md:flex gap-8 text-gray-300">
-      <a href="#about" class="hover:text-[#00aaff]">About</a>
-      <a href="#experience" class="hover:text-[#00aaff]">Experience</a>
-      <a href="#projects" class="hover:text-[#00aaff]">Projects</a>
-      <a href="#personal-projects" class="hover:text-[#00aaff]">Personal Projects</a>
-      <a href="#skills" class="hover:text-[#00aaff]">Skills</a>
-      <a href="#contact" class="hover:text-[#00aaff]">Contact</a>
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-[#0b141a]/85 border-b border-gray-800">
+    <div class="flex justify-between items-center px-6 md:px-16 py-4">
+      <a href="#top" class="text-xl md:text-2xl font-bold text-[#00aaff]">Rami Hamzi</a>
+
+      <nav class="hidden md:flex gap-7 text-sm text-gray-300">
+        <a href="#about" class="hover:text-[#00aaff] transition">About</a>
+        <a href="#experience" class="hover:text-[#00aaff] transition">Experience</a>
+        <a href="#projects" class="hover:text-[#00aaff] transition">Projects</a>
+        <a href="#personal-projects" class="hover:text-[#00aaff] transition">Personal</a>
+        <a href="#skills" class="hover:text-[#00aaff] transition">Skills</a>
+        <a href="#contact" class="hover:text-[#00aaff] transition">Contact</a>
+      </nav>
+
+      <button id="menuBtn" aria-label="Open menu" aria-expanded="false" class="md:hidden text-gray-300 hover:text-white p-2 -mr-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <nav id="mobileNav" class="hidden md:hidden px-6 pb-4 flex-col gap-1 text-gray-300 border-t border-gray-800 pt-3">
+      <a href="#about" class="py-2 hover:text-[#00aaff]">About</a>
+      <a href="#experience" class="py-2 hover:text-[#00aaff]">Experience</a>
+      <a href="#projects" class="py-2 hover:text-[#00aaff]">Projects</a>
+      <a href="#personal-projects" class="py-2 hover:text-[#00aaff]">Personal Projects</a>
+      <a href="#skills" class="py-2 hover:text-[#00aaff]">Skills</a>
+      <a href="#contact" class="py-2 hover:text-[#00aaff]">Contact</a>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="flex flex-col md:flex-row items-center md:items-start justify-start px-6 md:px-16 py-16 gap-8">
-    <!-- Left side: Text -->
-    <div class="text-left md:w-1/2">
-      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
-        Senior Software Engineer – Building Modern, Scalable Systems
-      </h2>
-      <p class="text-gray-400 max-w-md">
-        Software Engineer with 4 years of experience building distributed systems, integrating AI, and designing high-performance solutions.
-      </p>
-      <div class="mt-8 flex justify-start gap-4">
-        <a href="#projects" class="bg-primary px-6 py-3 rounded-lg font-bold text-white hover:opacity-90 transition">View Projects</a>
-        <a href="#contact" class="bg-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-700 transition">Get in Touch</a>
+  <!-- ===================== HERO ===================== -->
+  <section id="top" class="px-6 md:px-16 pt-16 pb-12">
+    <div class="flex flex-col lg:flex-row items-start justify-between gap-12">
+
+      <div class="lg:w-1/2">
+        <p class="mono text-sm text-[#00aaff] mb-3 tracking-wide">Senior Backend Engineer · AI Systems on AWS</p>
+
+        <h2 class="text-4xl md:text-5xl font-black text-white leading-tight mb-5">
+          I take prototypes to production.
+        </h2>
+
+        <p class="text-gray-400 max-w-xl leading-relaxed">
+          Backend engineer with 4 years building production systems on AWS. I rebuilt a startup's
+          prototype into event-driven microservices on EKS, designed the serverless data pipelines
+          behind it, and shipped LLM features that run under real traffic, real cost, and real
+          failure modes.
+        </p>
+
+        <!-- Certifications: these are a differentiator, so they go above the fold -->
+        <div class="flex flex-wrap gap-3 mt-6">
+          <span class="mono text-xs border border-[#00aaff]/40 text-[#00aaff] px-3 py-1.5 rounded-full">
+            AWS Solutions Architect – Professional
+          </span>
+          <span class="mono text-xs border border-[#00aaff]/40 text-[#00aaff] px-3 py-1.5 rounded-full">
+            AWS ML Engineer – Associate
+          </span>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#projects" class="bg-primary px-6 py-3 rounded-lg font-bold text-white hover:opacity-90 transition">View Projects</a>
+          <!-- RESUME-PDF: upload your PDF next to index.html and keep this link -->
+          <a href="Rami-Hamzi-Resume.pdf" target="_blank" class="border border-gray-700 px-6 py-3 rounded-lg font-bold text-gray-200 hover:border-[#00aaff] hover:text-[#00aaff] transition">Resume</a>
+          <a href="#contact" class="bg-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-700 transition">Get in Touch</a>
+        </div>
       </div>
-    </div>
 
-    <!-- Right side: Image -->
-    <div class="md:w-1/3 flex justify-start">
-      <img
-        src="https://img.theweek.in/content/dam/week/news/sci-tech/images/2019/1/3/neurons-neural-networks-inside-brain-thinking-shut.jpg"
-        alt="Rami Hamzi"
-        class="rounded-2xl shadow-lg w-80 md:w-[450px] border border-gray-700 object-cover"
-      />
-    </div>
-  </section>
+      <!--
+        PHOTO: the old stock "neuron" image was hot-linked from a news site.
+        Best option is a real photo of you — drop it in as photo.jpg and swap this
+        whole block for:
+          <img src="photo.jpg" alt="Rami Hamzi" class="rounded-2xl w-full glow border border-gray-800 object-cover">
+        Until then, this metrics panel does a better job than stock art.
+      -->
+      <div class="lg:w-[42%] w-full">
+        <div class="rounded-2xl border border-gray-800 bg-gray-900/60 p-6 glow">
+          <p class="mono text-xs text-gray-500 mb-5">production_systems.log</p>
 
-  <!-- About -->
-  <section id="about" class="px-6 md:px-16 py-10">
-    <h3 class="text-2xl font-bold text-white mb-4">About Me</h3>
-    <p class="text-gray-400 leading-relaxed max-w-3xl">
-      I’m a modern software engineer focused on building highly scalable, reliable, and future-ready systems.
-      I started programming at 15 and have since specialized in backend engineering, cloud-native architectures, and advanced machine learning solutions.
-      I design and develop high-performance services, distributed systems, and automation pipelines that integrate cutting-edge AI to solve real-world problems at scale.
-      My work revolves around combining modern engineering techniques with intelligent systems to push the boundaries of what’s possible in today’s technology landscape.
-    </p>
-  </section>
+          <div class="space-y-4">
+            <div class="flex items-baseline justify-between gap-4 border-b border-gray-800 pb-3">
+              <span class="text-sm text-gray-400">API p95 latency</span>
+              <span class="mono text-lg text-white">800ms <span class="text-[#00aaff]">→</span> 180ms</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 border-b border-gray-800 pb-3">
+              <span class="text-sm text-gray-400">Records ingested / day</span>
+              <span class="mono text-lg text-white">500k</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 border-b border-gray-800 pb-3">
+              <span class="text-sm text-gray-400">LLM token cost</span>
+              <span class="mono text-lg text-white">−65%</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 border-b border-gray-800 pb-3">
+              <span class="text-sm text-gray-400">Devices orchestrated 24/7</span>
+              <span class="mono text-lg text-white">40</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-sm text-gray-400">Engineers led</span>
+              <span class="mono text-lg text-white">4</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- Experience -->
-  <section id="experience" class="px-6 md:px-16 py-10 bg-gray-900">
-    <h3 class="text-2xl font-bold text-white mb-4">Experience</h3>
-    <div class="max-w-3xl">
-      <h4 class="text-lg font-semibold text-[#00aaff]">Software Developer – Undisclosed Company (Kefar Sava)</h4>
-      <p class="text-sm text-gray-400 mb-3">Jan 2022 – Present</p>
-      <ul class="list-disc ml-5 text-gray-400 space-y-2 text-sm">
-        <li>Architected and built scalable, reliable, and fault-tolerant distributed systems capable of handling 10k+ parallel requests, ensuring 99.99% uptime and a seamless user experience.</li>
-        <li>Led the development of AI-driven solutions integrating LLMs, computer vision, and advanced machine learning algorithms.</li>
-        <li>Designed and optimized high-performance backend architectures using microservices and event-driven systems.</li>
-        <li>Implemented end-to-end APIs (REST) powering real-time data exchange across multiple platforms and third-party services.</li>
-        <li>Designed and maintained cloud-native infrastructures using AWS, Docker, and Kubernetes, enabling auto-scaling and cost-efficient deployments.</li>
-        <li>Led a team of 4 engineers, conducting code reviews, mentoring, and pair programming, ensuring clean architecture and adherence to best practices.</li>
-        <li>Collaborated closely with product managers and designers to deliver end-to-end solutions that aligned with business goals and user needs.</li>
-        <li>Engineered an end-to-end SW/HW integration solution.</li>
-      </ul>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="px-6 md:px-16 py-10">
-    <h3 class="text-2xl font-bold text-white mb-6">Projects</h3>
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="px-6 md:px-16 py-12">
+    <h3 class="text-2xl font-bold text-white mb-5">About Me</h3>
+    <div class="max-w-3xl space-y-4 text-gray-400 leading-relaxed">
+      <p>
+        I build backend systems on AWS and ship AI features into production — async architectures,
+        event-driven pipelines, and vector search. I started programming at 15.
+      </p>
+      <p>
+        I joined Quantum Synergy pre-funding and wrote the first backend from scratch. When the
+        company raised, I led the redesign of that prototype into event-driven microservices on
+        EKS, and grew into owning the architecture and leading a team of four. Most of my work
+        lives at the point where a system meets real traffic, real cost, and real failure modes:
+        what to cache, what to make asynchronous, what to replay, and what to alert on at 3am.
+      </p>
+      <p>
+        I hold the AWS Solutions Architect – Professional and AWS Machine Learning Engineer –
+        Associate certifications.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience" class="px-6 md:px-16 py-12 bg-gray-900">
+    <h3 class="text-2xl font-bold text-white mb-8">Experience</h3>
+
+    <div class="max-w-3xl space-y-10">
+
+      <div>
+        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+          <h4 class="text-lg font-semibold text-white">Senior Software Engineer</h4>
+          <span class="mono text-sm text-gray-500">May 2023 – Present</span>
+        </div>
+        <p class="text-sm text-[#00aaff] mb-4">Quantum Synergy — Kefar Sava</p>
+        <ul class="list-disc ml-5 text-gray-400 space-y-2 text-sm leading-relaxed">
+          <li>Led the post-funding platform redesign — prototype to 6 event-driven microservices on EKS, weekly manual releases to daily automated deploys.</li>
+          <li>Shipped a production LLM pipeline end-to-end (Bedrock, Titan embeddings, K-Means selection, async + WebSocket) — cut token cost 65%.</li>
+          <li>Built a serverless 24/7 ingestion pipeline (Lambda, EventBridge, SQS/DLQ, S3 → DynamoDB/Aurora) — 500k records/day at $250/month with full replay.</li>
+          <li>Cut p95 latency 800ms → 180ms and database load 80% via Redis (88% hit rate), CloudFront, and Aurora/DynamoDB access-pattern tuning.</li>
+          <li>Built a 24/7 Android device farm (ADB + STF) orchestrating 40 physical devices, 8k+ automated tasks/day.</li>
+          <li>Led 4 engineers; owned on-call, security (least-privilege IAM, IRSA), and CloudWatch observability.</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+          <h4 class="text-lg font-semibold text-white">Software Engineer <span class="text-gray-500 font-normal">(Junior → Mid-Level)</span></h4>
+          <span class="mono text-sm text-gray-500">Jan 2022 – May 2023</span>
+        </div>
+        <p class="text-sm text-[#00aaff] mb-4">Quantum Synergy — Kefar Sava</p>
+        <ul class="list-disc ml-5 text-gray-400 space-y-2 text-sm leading-relaxed">
+          <li>Built the company's first backend pre-funding — core services, FastAPI REST APIs, data model, Docker, CI/CD.</li>
+          <li>Evolved PostgreSQL/MongoDB schemas through repeated pivots and identified the architectural limits that drove the redesign I later led.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="px-6 md:px-16 py-12">
+    <h3 class="text-2xl font-bold text-white mb-2">Projects</h3>
+    <p class="text-gray-500 text-sm mb-7">Production systems built at Quantum Synergy. Click any card for the architecture.</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-
-
-      <div onclick="openModal('modalBackend')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
-        <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/854/854929.png" class="h-24 w-auto object-contain" alt="">
+      <div onclick="openModal('modalBackend')" class="cursor-pointer bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-[#00aaff]/60 hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800/70 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/854/854929.png" class="h-20 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">Production REST API Platform</h4>
-          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+          <p class="mono text-xs text-[#00aaff] mt-2">p95 180ms · sync + async · EKS</p>
+          <p class="text-sm text-gray-400 mt-2">FastAPI on EKS with background workers, WebSocket delivery, Redis caching, and CloudFront.</p>
         </div>
       </div>
 
-      <div onclick="openModal('modalScraper')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
-        <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/2593/2593635.png" class="h-24 w-auto object-contain" alt="">
+      <div onclick="openModal('modalScraper')" class="cursor-pointer bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-[#00aaff]/60 hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800/70 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/2593/2593635.png" class="h-20 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
-          <h4 class="font-semibold text-lg text-white">Data Ingestion & Scraping Pipeline</h4>
-          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+          <h4 class="font-semibold text-lg text-white">Data Ingestion &amp; Scraping Pipeline</h4>
+          <p class="mono text-xs text-[#00aaff] mt-2">500k records/day · $250/month</p>
+          <p class="text-sm text-gray-400 mt-2">Serverless 24/7 ingestion with an S3 raw data lake, DLQ recovery, and full replay.</p>
         </div>
       </div>
 
-      <!-- Each project opens a modal -->
-      <div onclick="openModal('modalSummarizer')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
-        <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/7635/7635873.png" class="h-24 w-auto object-contain" alt="">
+      <div onclick="openModal('modalSummarizer')" class="cursor-pointer bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-[#00aaff]/60 hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800/70 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/7635/7635873.png" class="h-20 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">AI Text Summarization</h4>
-          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+          <p class="mono text-xs text-[#00aaff] mt-2">−65% token cost · Bedrock</p>
+          <p class="text-sm text-gray-400 mt-2">Embedding + clustering layer in front of the LLM to cut tokens without losing coverage.</p>
         </div>
       </div>
 
-      <div onclick="openModal('stf')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
-        <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/15484/15484915.png" class="h-24 w-auto object-contain" alt="">
+      <div onclick="openModal('stf')" class="cursor-pointer bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-[#00aaff]/60 hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800/70 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/15484/15484915.png" class="h-20 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
-          <h4 class="font-semibold text-lg text-white">SW/HW Android Farm</h4>
-          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+          <h4 class="font-semibold text-lg text-white">SW/HW Android Device Farm</h4>
+          <p class="mono text-xs text-[#00aaff] mt-2">40 devices · 8k+ tasks/day</p>
+          <p class="text-sm text-gray-400 mt-2">Software orchestrating real hardware around the clock, with health-aware routing and retries.</p>
         </div>
       </div>
 
-      <div onclick="openModal('modalFace')" class="cursor-pointer bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition">
-        <div class="flex justify-center bg-gray-800 py-8">
-          <img src="https://cdn-icons-png.flaticon.com/512/1461/1461141.png" class="h-24 w-auto object-contain" alt="">
+      <div onclick="openModal('modalFace')" class="cursor-pointer bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-[#00aaff]/60 hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-800/70 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/1461/1461141.png" class="h-20 w-auto object-contain" alt="">
         </div>
         <div class="p-5">
           <h4 class="font-semibold text-lg text-white">Face Recognition System</h4>
-          <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+          <p class="mono text-xs text-[#00aaff] mt-2">Vector search · OpenSearch</p>
+          <p class="text-sm text-gray-400 mt-2">GPU embedding extraction and ANN similarity search over an OpenSearch vector index.</p>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ===================== PERSONAL PROJECTS ===================== -->
+  <section id="personal-projects" class="px-6 md:px-16 py-12 bg-gray-900">
+    <h3 class="text-2xl font-bold text-white mb-2">Personal Projects</h3>
+    <p class="text-gray-500 text-sm mb-7">Things I build on my own time.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div onclick="openModal('modalAgents')" class="cursor-pointer bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-[#00aaff]/60 hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-700/60 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" class="h-20 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">Multi-Agent AI Social Platform</h4>
+          <p class="text-sm text-gray-400 mt-2">An AI-only network where autonomous agents debate and collaborate. Ongoing.</p>
+        </div>
+      </div>
+
+      <div onclick="openModal('modalLLM')" class="cursor-pointer bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-[#00aaff]/60 hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-700/60 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/19012/19012509.png" class="h-20 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">Student-Teacher LLM Training</h4>
+          <p class="text-sm text-gray-400 mt-2">Fine-tuned Phi-2.7 locally using a teacher model to generate structured training data.</p>
+        </div>
+      </div>
+
+      <div onclick="openModal('modalVideo')" class="cursor-pointer bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-[#00aaff]/60 hover:shadow-xl transition">
+        <div class="flex justify-center bg-gray-700/60 py-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/18997/18997527.png" class="h-20 w-auto object-contain" alt="">
+        </div>
+        <div class="p-5">
+          <h4 class="font-semibold text-lg text-white">AI Video Generator</h4>
+          <p class="text-sm text-gray-400 mt-2">Automated pipeline generating 1–3 minute videos from structured JSON.</p>
+        </div>
+      </div>
 
     </div>
   </section>
 
- <!-- Personal Projects -->
-<section id="personal-projects" class="px-6 md:px-16 py-10 bg-gray-900">
-  <h3 class="text-2xl font-bold text-white mb-6">Personal Projects</h3>
+  <!-- ===================== SKILLS ===================== -->
+  <!-- Kept deliberately tight and identical to the resume. Everything listed here
+       is fair game for three levels of follow-up questions in an interview. -->
+  <section id="skills" class="px-6 md:px-16 py-12">
+    <h3 class="text-2xl font-bold text-white mb-7">Technical Skills</h3>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="space-y-6 max-w-4xl">
 
-    <!-- Multi-Agent AI Social Platform (FIRST) -->
-    <div onclick="openModal('modalAgents')" class="cursor-pointer bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition">
-      <div class="flex justify-center bg-gray-700 py-8">
-        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" class="h-24 w-auto object-contain" alt="">
+      <div>
+        <h4 class="text-[#00aaff] font-semibold mb-3 text-sm">Languages</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Python</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+        </div>
       </div>
-      <div class="p-5">
-        <h4 class="font-semibold text-lg text-white">Multi-Agent AI Social Platform</h4>
-        <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+
+      <div>
+        <h4 class="text-[#00aaff] font-semibold mb-3 text-sm">Backend</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">FastAPI</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">REST APIs</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Microservices</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Event-Driven Architecture</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Async Programming</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">WebSockets</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Pydantic</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">pytest</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Distributed Systems</span>
+        </div>
       </div>
-    </div>
 
-    <!-- Student-Teacher LLM -->
-    <div onclick="openModal('modalLLM')" class="cursor-pointer bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition">
-      <div class="flex justify-center bg-gray-700 py-8">
-        <img src="https://cdn-icons-png.flaticon.com/512/19012/19012509.png" class="h-24 w-auto object-contain" alt="">
+      <div>
+        <h4 class="text-[#00aaff] font-semibold mb-3 text-sm">AWS</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">EKS</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Lambda</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">S3</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">SQS</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">EventBridge</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">ALB</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">CloudFront</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">CloudWatch</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">IAM</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">IRSA</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">ElastiCache</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Bedrock</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Autoscaling</span>
+        </div>
       </div>
-      <div class="p-5">
-        <h4 class="font-semibold text-lg text-white">Student-Teacher LLM Training</h4>
-        <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+
+      <div>
+        <h4 class="text-[#00aaff] font-semibold mb-3 text-sm">DevOps</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Docker</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Kubernetes</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">GitHub Actions</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">CI/CD</span>
+        </div>
       </div>
-    </div>
 
-    <!-- AI Video Generator -->
-    <div onclick="openModal('modalVideo')" class="cursor-pointer bg-gray-800 rounded-lg overflow-hidden hover:shadow-xl transition">
-      <div class="flex justify-center bg-gray-700 py-8">
-        <img src="https://cdn-icons-png.flaticon.com/512/18997/18997527.png" class="h-24 w-auto object-contain" alt="">
+      <div>
+        <h4 class="text-[#00aaff] font-semibold mb-3 text-sm">AI / Machine Learning</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Amazon Bedrock</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Titan Embeddings</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">RAG</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Vector Search</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Embeddings</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Transformers</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">PyTorch</span>
+        </div>
       </div>
-      <div class="p-5">
-        <h4 class="font-semibold text-lg text-white">AI Video Generator</h4>
-        <p class="text-sm text-gray-400 mt-2">Click to view project details.</p>
+
+      <div>
+        <h4 class="text-[#00aaff] font-semibold mb-3 text-sm">Databases &amp; Storage</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Aurora PostgreSQL</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">DynamoDB</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Amazon S3</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">OpenSearch (Vector DB)</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Redis</span>
+          <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">MongoDB</span>
+        </div>
       </div>
-    </div>
 
-  </div>
-</section>
+      <div>
+        <h4 class="text-[#00aaff] font-semibold mb-3 text-sm">Spoken Languages</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm font-medium">English</span>
+          <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm font-medium">Hebrew</span>
+          <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm font-medium">Arabic</span>
+        </div>
+      </div>
 
-
-  <!-- Skills -->
-  <section id="skills" class="px-6 md:px-16 py-10 bg-gray-900">
-
-    <h4 class="text-[#00aaff] font-semibold mb-2">Programming Languages</h4>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Python</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">C#</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">C++</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Java</span>
-    </div>
-
-    <h4 class="text-[#00aaff] font-semibold mb-2">Web & Backend Development</h4>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">FastAPI</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">REST APIs</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Microservices</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Event-Driven Architecture</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Async Programming</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Kafka</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Redis</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">WebSockets</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Distributed Systems</span>
-    </div>
-
-    <h4 class="text-[#00aaff] font-semibold mb-2">AI / Machine Learning</h4>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">PyTorch</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">TensorFlow</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Transformers</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">RAG</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Embeddings</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Vector Search</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Computer Vision (OpenCV)</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">CUDA</span>
-    </div>
-
-    <h4 class="text-[#00aaff] font-semibold mb-2">Databases & Storage</h4>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">DynamoDB</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Aurora</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">S3 (Amazon)</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">OpenSearch (Vector DB)</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Redis</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">MongoDB</span>
-    </div>
-
-    <h4 class="text-[#00aaff] font-semibold mb-2">DevOps & Cloud</h4>
-    <div class="flex flex-wrap gap-3 mb-4">
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">AWS (EKS, EC2, S3, ALB, CloudWatch)</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Kubernetes</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Docker</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">CI/CD (GitHub Actions)</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Terraform</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Kafka (Amazon MSK)</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Scalable Microservices</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Event-Driven Architecture</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Autoscaling (HPA, Karpenter)</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Cloud Security (IAM, IRSA)</span>
-    </div>
-
-    <h4 class="text-[#00aaff] font-semibold mb-2">Languages</h4>
-    <div class="flex flex-wrap gap-3">
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">English</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Hebrew</span>
-      <span class="bg-primary/10 text-[#00aaff] px-3 py-1 rounded-full text-sm font-medium">Arabic</span>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="px-6 md:px-16 py-10 text-center">
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="px-6 md:px-16 py-14 text-center bg-gray-900">
     <h3 class="text-2xl font-bold text-white mb-3">Let's Connect</h3>
-    <p class="text-gray-400 mb-6">Interested in collaborating or hiring? Reach out below.</p>
+    <p class="text-gray-400 mb-7">Open to senior backend and AI infrastructure roles.</p>
 
     <div class="flex flex-col items-center gap-4">
       <a href="mailto:ram1hamzi1997@gmail.com" class="bg-primary px-6 py-3 rounded-lg font-bold text-white hover:opacity-90 transition">
-        Email Me
+        ram1hamzi1997@gmail.com
       </a>
-
-      <a href="tel:+972549294970" class="text-[#00aaff] font-medium hover:underline">
-        📞 +972 54-929-4970
-      </a>
+      <a href="tel:+972549294970" class="text-[#00aaff] font-medium hover:underline">+972 54-929-4970</a>
     </div>
 
-    <div class="flex justify-center gap-6 mt-8">
-      <a href="https://www.linkedin.com/in/rami-hamzi-1a415721b" target="_blank" class="hover:text-[#00aaff] transition">LinkedIn</a>
-      <a href="https://github.com/ramiha97" target="_blank" class="hover:text-[#00aaff] transition">GitHub</a>
+    <div class="flex justify-center gap-6 mt-8 text-gray-400">
+      <a href="https://www.linkedin.com/in/rami-hamzi-1a415721b" target="_blank" rel="noopener" class="hover:text-[#00aaff] transition">LinkedIn</a>
+      <a href="https://github.com/ramiha97" target="_blank" rel="noopener" class="hover:text-[#00aaff] transition">GitHub</a>
+      <a href="Rami-Hamzi-Resume.pdf" target="_blank" class="hover:text-[#00aaff] transition">Resume (PDF)</a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="text-center py-4 border-t border-gray-700 text-gray-500 text-sm">
-    © 2025 Rami Hamzi. All Rights Reserved.
+  <footer class="text-center py-5 border-t border-gray-800 text-gray-600 text-sm">
+    © 2026 Rami Hamzi
   </footer>
 
-  <!-- Modals -->
-<div id="modalSummarizer" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
-    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
-      <div>
-        <h3 class="text-2xl font-bold text-white">Production AI Text Summarization Pipeline</h3>
-        <p class="text-sm text-gray-400 mt-1">
-          Asynchronous AWS summarization service with semantic clustering, representative text selection, and real-time client updates.
-        </p>
+
+  <!-- ============================================================ -->
+  <!-- MODALS                                                       -->
+  <!-- ============================================================ -->
+
+  <!-- Modal: Production REST API Platform -->
+  <div id="modalBackend" class="modal hidden fixed inset-0 bg-black/75 items-center justify-center z-50 p-4">
+    <div class="modal-panel bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+        <div>
+          <h3 class="text-2xl font-bold text-white">Production REST API Platform</h3>
+          <p class="text-sm text-gray-400 mt-1">
+            AWS backend on EKS combining synchronous APIs, asynchronous job processing, and real-time client updates.
+          </p>
+        </div>
+        <button onclick="closeModal('modalBackend')" aria-label="Close" class="text-gray-400 hover:text-white transition text-2xl leading-none">&times;</button>
       </div>
-      <button onclick="closeModal('modalSummarizer')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
-        &times;
-      </button>
-    </div>
 
-    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Overview</h4>
-        <p class="text-sm leading-relaxed text-gray-300">
-          Built a production-grade <span class="text-white">AI text summarization pipeline</span> on AWS designed for large-scale text processing with asynchronous execution and real-time delivery to client applications. The client sends a summarization request and receives an immediate response, while the heavy summarization workflow runs in the background. Once processing is completed, the result is delivered back to the client through real-time communication.
-        </p>
-      </section>
+      <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">How it works</h4>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">1) Async job submission</p>
-            <p class="text-sm text-gray-300 mt-1">
-              The client sends the text payload to the API and immediately receives a response while the summarization task is dispatched to a background processing pipeline.
-            </p>
+        <!-- Scale & results: the block that turns a description into evidence -->
+        <section>
+          <h4 class="text-lg font-semibold text-white mb-3">Scale &amp; results</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">180ms</p>
+              <p class="text-xs text-gray-400 mt-1">p95 latency (from 800ms)</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">88%</p>
+              <p class="text-xs text-gray-400 mt-1">Redis cache hit rate</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">−80%</p>
+              <p class="text-xs text-gray-400 mt-1">Database load</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">6</p>
+              <p class="text-xs text-gray-400 mt-1">Independent services</p>
+            </div>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">2) Vector embedding + K-Means grouping</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Input text segments are converted into semantic vectors using <span class="text-white">Amazon Titan Embeddings</span>, then grouped with <span class="text-white">K-Means clustering</span> to organize similar content into coherent clusters.
-            </p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">3) Representative text selection</p>
-            <p class="text-sm text-gray-300 mt-1">
-              A representative text is selected from each cluster so only the most informative content is forwarded to the summarization stage, reducing token usage and improving summary quality.
-            </p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">4) LLM summarization + delivery</p>
-            <p class="text-sm text-gray-300 mt-1">
-              The selected texts are sent to an LLM on <span class="text-white">Amazon Bedrock</span> to generate the final summary, then the completed result is returned to the client through real-time update channels.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Production architecture</h4>
-        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
-          <ol class="list-decimal ml-5 space-y-1">
-            <li><span class="text-white font-semibold">Client Layer:</span> the client submits summarization requests and receives an immediate acknowledgment instead of waiting for long-running processing.</li>
-            <li><span class="text-white font-semibold">API Layer:</span> the backend validates requests, stores job metadata, and dispatches summarization tasks to asynchronous workers.</li>
-            <li><span class="text-white font-semibold">Async Processing Layer:</span> background workers execute embedding generation, K-Means clustering, representative text extraction, and LLM summarization.</li>
-            <li><span class="text-white font-semibold">AI Layer:</span> Amazon Titan Embeddings generates semantic vectors and Amazon Bedrock performs the final summarization.</li>
-            <li><span class="text-white font-semibold">Data Layer:</span> job states, inputs, outputs, and processing metadata are stored for reliability, traceability, and replayability.</li>
-            <li><span class="text-white font-semibold">Delivery Layer:</span> completed summaries are pushed back to the client using WebSocket-based real-time updates.</li>
-          </ol>
-        </div>
-      </section>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Overview</h4>
+          <p class="text-sm leading-relaxed text-gray-300">
+            The platform started as a monolithic prototype. After the company raised funding I led the
+            redesign into <span class="text-white">6 event-driven microservices on EKS</span>, splitting
+            work into two paths: synchronous REST endpoints for operations that must answer immediately,
+            and asynchronous workers for anything heavy — with results pushed back over WebSocket rather
+            than making clients poll.
+          </p>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Highlights</h4>
-        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
-          <li>Designed an async summarization workflow that returns immediately to the client while heavy AI processing runs in the background</li>
-          <li>Used semantic embeddings and K-Means clustering to reduce redundancy and preserve topical structure</li>
-          <li>Selected representative texts from each cluster to optimize token usage before LLM inference</li>
-          <li>Delivered final summaries through real-time client updates for a production-grade user experience</li>
-          <li>Built the system for reliability, scalability, observability, and large-scale text processing</li>
-        </ul>
-      </section>
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">Core capabilities</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">Synchronous API flows</p>
+              <p class="text-sm text-gray-300 mt-1">REST endpoints for immediate request/response operations, served from Redis where the access pattern allows it.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">Asynchronous job processing</p>
+              <p class="text-sm text-gray-300 mt-1">Long-running work is dispatched to background workers so the API acknowledges immediately instead of holding a connection open.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">Real-time client updates</p>
+              <p class="text-sm text-gray-300 mt-1">WebSocket channels deliver live job status and final results, removing polling load from the API tier.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">Storage by access pattern</p>
+              <p class="text-sm text-gray-300 mt-1">Each datastore was chosen against a specific access pattern rather than defaulting to one engine for everything.</p>
+            </div>
+          </div>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Tools &amp; Techniques</h4>
-        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
-          <li>Amazon Bedrock for LLM-based summarization</li>
-          <li>Amazon Titan Embeddings for semantic vector generation</li>
-          <li>K-Means clustering for grouping related text segments</li>
-          <li>Python for orchestration, preprocessing, and API integration</li>
-          <li>Asynchronous workers and real-time delivery architecture</li>
-        </ul>
-      </section>
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">Architecture</h4>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+            <ol class="list-decimal ml-5 space-y-1">
+              <li><span class="text-white font-semibold">Client Layer:</span> REST for synchronous operations, WebSocket for live job status.</li>
+              <li><span class="text-white font-semibold">API Layer:</span> FastAPI services on EKS validate requests and either serve directly or enqueue a job.</li>
+              <li><span class="text-white font-semibold">Data Layer:</span> DynamoDB for single-key, high-volume access (job state, sessions); Aurora PostgreSQL for relational and transactional workloads.</li>
+              <li><span class="text-white font-semibold">Search Layer:</span> OpenSearch vector indexing for semantic and similarity-driven retrieval.</li>
+              <li><span class="text-white font-semibold">Async Layer:</span> background workers process long-running jobs and publish results back to the waiting client.</li>
+              <li><span class="text-white font-semibold">Caching Layer:</span> ElastiCache (Redis) fronts hot read paths, absorbing the majority of read traffic.</li>
+              <li><span class="text-white font-semibold">Media Layer:</span> S3 + CloudFront for global edge delivery of images and static assets.</li>
+              <li><span class="text-white font-semibold">Operations:</span> IRSA per workload, private-subnet isolation, CloudWatch dashboards and alarms.</li>
+            </ol>
+          </div>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
-        <div class="grid sm:grid-cols-2 gap-3 text-sm">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Backend</p>
-            <p class="text-white font-semibold">REST API, Async Jobs, WebSocket, Python</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">AI / ML</p>
-            <p class="text-white font-semibold">Amazon Bedrock, Titan Embeddings, K-Means</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Architecture</p>
-            <p class="text-white font-semibold">Background Processing, Real-Time Delivery</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Cloud</p>
-            <p class="text-white font-semibold">AWS Production Services</p>
-          </div>
-        </div>
-      </section>
-    </div>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Engineering decisions</h4>
+          <ul class="list-disc ml-5 text-sm space-y-1.5 text-gray-300">
+            <li>Split sync and async paths so slow work can never occupy a request thread or a client connection.</li>
+            <li>Chose DynamoDB, Aurora and OpenSearch per access pattern, accepting the cost of operating three engines in exchange for predictable performance on each.</li>
+            <li>Pushed results over WebSocket instead of client polling, cutting redundant read traffic against the API tier.</li>
+            <li>Put Redis in front of the hottest read paths, taking DB load down ~80% at an 88% hit rate.</li>
+            <li>Moved static media to CloudFront so image delivery never touched application compute.</li>
+            <li>Scoped one IAM role per workload via IRSA rather than sharing a node-level role.</li>
+          </ul>
+        </section>
 
-    <div class="p-6 border-t border-white/10 flex justify-end">
-      <button onclick="closeModal('modalSummarizer')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
-        Close
-      </button>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Backend</p>
+              <p class="text-white font-semibold">FastAPI, REST, WebSocket, Python</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Databases</p>
+              <p class="text-white font-semibold">DynamoDB, Aurora PostgreSQL</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Search / Vector DB</p>
+              <p class="text-white font-semibold">Amazon OpenSearch</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Infrastructure</p>
+              <p class="text-white font-semibold">EKS, ElastiCache (Redis), S3 + CloudFront, ALB</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="p-6 border-t border-white/10 flex justify-end">
+        <button onclick="closeModal('modalBackend')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">Close</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Modal: STF / Android Automation -->
-<div id="stf" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
-    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
-      <div>
-        <h3 class="text-2xl font-bold text-white">24/7 Android Device Farm Automation (ADB + STF)</h3>
-        <p class="text-sm text-gray-400 mt-1">
-          Production-grade system orchestrating real Android devices with continuous execution, async processing, and real-time control.
-        </p>
+
+  <!-- Modal: Data Ingestion & Scraping Pipeline -->
+  <div id="modalScraper" class="modal hidden fixed inset-0 bg-black/75 items-center justify-center z-50 p-4">
+    <div class="modal-panel bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+        <div>
+          <h3 class="text-2xl font-bold text-white">24/7 Data Ingestion &amp; Scraping Pipeline</h3>
+          <p class="text-sm text-gray-400 mt-1">
+            Serverless AWS pipeline that scrapes continuously, preserves raw payloads, and publishes structured app-ready data.
+          </p>
+        </div>
+        <button onclick="closeModal('modalScraper')" aria-label="Close" class="text-gray-400 hover:text-white transition text-2xl leading-none">&times;</button>
       </div>
-      <button onclick="closeModal('stf')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
-        &times;
-      </button>
-    </div>
 
-    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Overview</h4>
-        <p class="text-sm leading-relaxed text-gray-300">
-          Built a <span class="text-white">24/7 Android device farm automation platform</span> where software agents control real physical devices using ADB and STF. The system operates continuously, executing tasks, collecting data, and coordinating devices in parallel while maintaining full traceability and reliability for production workloads.
-        </p>
-      </section>
+      <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Core capabilities</h4>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">Parallel device execution</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Orchestrates dozens of real Android devices simultaneously, enabling large-scale automation and data collection.
-            </p>
+        <section>
+          <h4 class="text-lg font-semibold text-white mb-3">Scale &amp; results</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">500k</p>
+              <p class="text-xs text-gray-400 mt-1">Records / day</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">$250</p>
+              <p class="text-xs text-gray-400 mt-1">Infra cost / month</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">24/7</p>
+              <p class="text-xs text-gray-400 mt-1">Continuous operation</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">100%</p>
+              <p class="text-xs text-gray-400 mt-1">Replayable from raw</p>
+            </div>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">Async task processing</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Tasks are dispatched asynchronously, allowing the system to handle long-running workflows without blocking execution.
-            </p>
+        </section>
+
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Overview</h4>
+          <p class="text-sm leading-relaxed text-gray-300">
+            A serverless scraping and ingestion platform built for cost efficiency and replayability.
+            Compute runs only when triggered, every raw payload is written to
+            <span class="text-white">S3 before any transformation</span>, and normalization happens
+            asynchronously downstream. That separation means a bug in the transform logic is never
+            data loss — it is a reprocessing job.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">How it works</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">1) Event-driven scraping</p>
+              <p class="text-sm text-gray-300 mt-1">
+                <span class="text-white">EventBridge</span> schedules and <span class="text-white">Lambda</span> executes, so there is no always-on fleet idling between jobs.
+              </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">2) Raw data lake</p>
+              <p class="text-sm text-gray-300 mt-1">
+                Every original response lands in <span class="text-white">S3</span> untouched — the source of truth for reprocessing, audit, and debugging.
+              </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">3) Async processing</p>
+              <p class="text-sm text-gray-300 mt-1">
+                <span class="text-white">SQS</span> decouples collection from processing; workers validate, clean, deduplicate and enrich without ever blocking the scrapers.
+              </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">4) App-ready storage</p>
+              <p class="text-sm text-gray-300 mt-1">
+                Normalized records are written to <span class="text-white">DynamoDB</span> for scalable key access and <span class="text-white">Aurora Serverless</span> for relational queries.
+              </p>
+            </div>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">Real-time control & monitoring</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Device states, execution logs, and task progress are tracked in real time for full operational visibility.
-            </p>
+        </section>
+
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">Reliability model</h4>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+            <ul class="list-disc ml-5 space-y-1">
+              <li><span class="text-white font-semibold">Retries with backoff</span> on transient source failures.</li>
+              <li><span class="text-white font-semibold">Dead-letter queues</span> capture poison records instead of stalling the queue; DLQ depth is alarmed.</li>
+              <li><span class="text-white font-semibold">Deduplication</span> on record identity so re-delivery never produces duplicates downstream.</li>
+              <li><span class="text-white font-semibold">Full replay</span> from the S3 raw lake — transform logic can change and history can be rebuilt.</li>
+              <li><span class="text-white font-semibold">CloudWatch</span> logs, metrics and alarms covering invocation errors, queue depth, and freshness.</li>
+            </ul>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">Intelligent task routing</p>
-            <p class="text-sm text-gray-300 mt-1">
-              AI-based scheduling assigns tasks to optimal devices based on availability, performance, and state.
-            </p>
+        </section>
+
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Why serverless</h4>
+          <p class="text-sm leading-relaxed text-gray-300">
+            Scraping load is bursty and idle most of the time — the worst possible shape for
+            always-on instances. Event-driven Lambda means paying only for execution, which is where
+            the cost advantage over an equivalent EC2 fleet comes from. The trade-off accepted was
+            per-invocation limits and cold starts, neither of which matters for background ingestion.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Compute &amp; Orchestration</p>
+              <p class="text-white font-semibold">Lambda, EventBridge</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Messaging</p>
+              <p class="text-white font-semibold">SQS + Dead-Letter Queues</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Storage</p>
+              <p class="text-white font-semibold">S3 (raw lake), DynamoDB, Aurora Serverless</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Observability</p>
+              <p class="text-white font-semibold">CloudWatch Logs, Metrics, Alarms</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Production architecture</h4>
-        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
-          <ol class="list-decimal ml-5 space-y-1">
-            <li><span class="text-white font-semibold">Device Layer:</span> real Android devices connected and exposed via STF for remote access and control.</li>
-            <li><span class="text-white font-semibold">Control Layer:</span> backend services send ADB commands, execute workflows, and collect telemetry from devices.</li>
-            <li><span class="text-white font-semibold">Queue Layer:</span> asynchronous job queues distribute tasks across devices to ensure scalability and decoupled execution.</li>
-            <li><span class="text-white font-semibold">Processing Layer:</span> background workers handle task execution, retries, and workflow coordination.</li>
-            <li><span class="text-white font-semibold">Data Layer:</span> device logs, activity history, and execution data are stored for traceability and analytics.</li>
-            <li><span class="text-white font-semibold">Monitoring & Reliability:</span> continuous health checks, retries, and logging ensure stable 24/7 operation.</li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Tools &amp; Technologies</h4>
-        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
-          <li>ADB for low-level device control and automation</li>
-          <li>STF for device farm management and remote access</li>
-          <li>Python for orchestration and automation services</li>
-          <li>Asynchronous job queues for scalable task distribution</li>
-          <li>Database systems for logs, task history, and traceability</li>
-          <li>Real Android hardware cluster</li>
-        </ul>
-      </section>
-
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Outcome</h4>
-        <p class="text-sm leading-relaxed text-gray-300">
-          Delivered a production-grade SW/HW system capable of continuously orchestrating real devices, executing automation workflows at scale, and collecting structured data with full reliability and observability.
-        </p>
-      </section>
-    </div>
-
-    <div class="p-6 border-t border-white/10 flex justify-end">
-      <button onclick="closeModal('stf')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
-        Close
-      </button>
+      <div class="p-6 border-t border-white/10 flex justify-end">
+        <button onclick="closeModal('modalScraper')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">Close</button>
+      </div>
     </div>
   </div>
-</div>
-<!-- Modal: Face Recognition -->
-<div id="modalFace" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
-    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
-      <div>
-        <h3 class="text-2xl font-bold text-white">Production Face Recognition Platform</h3>
-        <p class="text-sm text-gray-400 mt-1">
-          Real-time face search system using facial embeddings, OpenSearch vector retrieval, S3 image delivery, and PostgreSQL metadata lookup.
-        </p>
+
+
+  <!-- Modal: AI Text Summarization -->
+  <div id="modalSummarizer" class="modal hidden fixed inset-0 bg-black/75 items-center justify-center z-50 p-4">
+    <div class="modal-panel bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+        <div>
+          <h3 class="text-2xl font-bold text-white">Production AI Text Summarization Pipeline</h3>
+          <p class="text-sm text-gray-400 mt-1">
+            Async AWS summarization service using semantic clustering to cut token cost before the model is ever called.
+          </p>
+        </div>
+        <button onclick="closeModal('modalSummarizer')" aria-label="Close" class="text-gray-400 hover:text-white transition text-2xl leading-none">&times;</button>
       </div>
-      <button onclick="closeModal('modalFace')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
-        &times;
-      </button>
-    </div>
 
-    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Overview</h4>
-        <p class="text-sm leading-relaxed text-gray-300">
-          Built a production-grade <span class="text-white">face recognition platform</span> where the client sends an image, the system extracts the facial embedding, performs similarity search against stored vectors in <span class="text-white">Amazon OpenSearch</span>, retrieves the matching identity and vector reference, then returns the final image from <span class="text-white">Amazon S3</span> together with structured metadata from <span class="text-white">PostgreSQL</span>. The platform was designed for low-latency retrieval, scalable vector search, and real-time API delivery.
-        </p>
-      </section>
+      <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Recognition pipeline</h4>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">1) Client image request</p>
-            <p class="text-sm text-gray-300 mt-1">
-              The client sends an input image to the API, which starts the face recognition workflow in real time.
-            </p>
+        <section>
+          <h4 class="text-lg font-semibold text-white mb-3">Scale &amp; results</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">−65%</p>
+              <p class="text-xs text-gray-400 mt-1">Token cost</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">&lt;120ms</p>
+              <p class="text-xs text-gray-400 mt-1">API acknowledgment</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">O(1)</p>
+              <p class="text-xs text-gray-400 mt-1">Response time vs. doc size</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">100%</p>
+              <p class="text-xs text-gray-400 mt-1">Jobs replayable from state</p>
+            </div>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">2) Face embedding extraction</p>
-            <p class="text-sm text-gray-300 mt-1">
-              A facial embedding is generated from the detected face using an <span class="text-white">InsightFace</span> model running on GPU-enabled infrastructure for fast inference.
-            </p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">3) Vector similarity search</p>
-            <p class="text-sm text-gray-300 mt-1">
-              The extracted face vector is searched against stored embeddings in <span class="text-white">Amazon OpenSearch</span> to find the nearest match and return the associated identity reference.
-            </p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">4) Image + metadata retrieval</p>
-            <p class="text-sm text-gray-300 mt-1">
-              After the match is found, the system retrieves the image from <span class="text-white">Amazon S3</span> and loads additional metadata from <span class="text-white">PostgreSQL</span> before returning the combined result to the client.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Production architecture</h4>
-        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
-          <ol class="list-decimal ml-5 space-y-1">
-            <li><span class="text-white font-semibold">Client Layer:</span> the client sends a face image request to the API for real-time identification and retrieval.</li>
-            <li><span class="text-white font-semibold">Inference Layer:</span> a GPU-enabled face model extracts the embedding vector from the uploaded image.</li>
-            <li><span class="text-white font-semibold">Vector Search Layer:</span> Amazon OpenSearch stores and indexes facial vectors for fast similarity search at scale.</li>
-            <li><span class="text-white font-semibold">Object Storage Layer:</span> matched images are stored in Amazon S3 and retrieved using the returned identity reference.</li>
-            <li><span class="text-white font-semibold">Metadata Layer:</span> PostgreSQL stores structured identity and contextual metadata linked to each matched image.</li>
-            <li><span class="text-white font-semibold">API Delivery Layer:</span> the backend combines vector search results, image retrieval, and metadata lookup into a single response returned to the client.</li>
-          </ol>
-        </div>
-      </section>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">The problem</h4>
+          <p class="text-sm leading-relaxed text-gray-300">
+            Summarizing large documents naively means sending everything to the model: expensive,
+            slow, and worse — long inputs contain heavy redundancy, so much of that spend buys
+            nothing. The fix was not a better prompt. It was
+            <span class="text-white">not sending redundant text in the first place</span>.
+          </p>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Highlights</h4>
-        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
-          <li>Designed a real-time face recognition workflow from image upload to vector search and result delivery</li>
-          <li>Stored facial embeddings in Amazon OpenSearch for scalable similarity-based retrieval</li>
-          <li>Separated vector search, image storage, and metadata storage into specialized production components</li>
-          <li>Returned final matches by combining image assets from S3 with relational metadata from PostgreSQL</li>
-          <li>Built the system for high-throughput inference, low-latency search, and production API integration</li>
-        </ul>
-      </section>
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">How it works</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">1) Async job submission</p>
+              <p class="text-sm text-gray-300 mt-1">
+                The client posts the payload, job state is persisted, and the task is dispatched to background workers — the API acknowledges immediately regardless of document size.
+              </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">2) Embeddings + K-Means</p>
+              <p class="text-sm text-gray-300 mt-1">
+                Segments are embedded with <span class="text-white">Amazon Titan Embeddings</span> and grouped by <span class="text-white">K-Means</span>, so semantically similar passages collapse into shared clusters.
+              </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">3) Representative selection</p>
+              <p class="text-sm text-gray-300 mt-1">
+                One representative segment per cluster moves forward. Redundancy is dropped while topical coverage is preserved — this is where the token reduction comes from.
+              </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">4) Inference + delivery</p>
+              <p class="text-sm text-gray-300 mt-1">
+                The reduced set goes to an LLM on <span class="text-white">Amazon Bedrock</span>, and the finished summary is pushed to the client over <span class="text-white">WebSocket</span>.
+              </p>
+            </div>
+          </div>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
-        <div class="grid sm:grid-cols-2 gap-3 text-sm">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Machine Learning</p>
-            <p class="text-white font-semibold">InsightFace, PyTorch</p>
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">Production architecture</h4>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+            <ol class="list-decimal ml-5 space-y-1">
+              <li><span class="text-white font-semibold">Client Layer:</span> submits a request and gets an immediate acknowledgment with a job ID.</li>
+              <li><span class="text-white font-semibold">API Layer:</span> validates input, persists job metadata, dispatches to workers.</li>
+              <li><span class="text-white font-semibold">Async Layer:</span> workers run embedding, clustering, selection, and inference.</li>
+              <li><span class="text-white font-semibold">AI Layer:</span> Titan Embeddings for vectors, Bedrock for generation.</li>
+              <li><span class="text-white font-semibold">Data Layer:</span> job state, inputs and outputs stored for traceability and replay.</li>
+              <li><span class="text-white font-semibold">Delivery Layer:</span> WebSocket push on completion — no client polling.</li>
+            </ol>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Vector Database</p>
-            <p class="text-white font-semibold">Amazon OpenSearch</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Storage</p>
-            <p class="text-white font-semibold">Amazon S3, PostgreSQL</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Backend / Infrastructure</p>
-            <p class="text-white font-semibold">REST API, Python, GPU Inference, AWS</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Outcome</h4>
-        <p class="text-sm leading-relaxed text-gray-300">
-          Delivered a production-ready face recognition system capable of converting query images into embeddings, performing similarity search on large-scale vector indexes, retrieving linked media from S3, enriching the response with PostgreSQL metadata, and returning complete results to the client in real time.
-        </p>
-      </section>
-    </div>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Engineering decisions</h4>
+          <ul class="list-disc ml-5 text-sm space-y-1.5 text-gray-300">
+            <li>Made the whole flow asynchronous — inference latency is unpredictable and should never sit inside a request/response cycle.</li>
+            <li>Attacked cost <em>before</em> the model call rather than after; reducing input is the only lever that scales linearly with spend.</li>
+            <li>Used clustering rather than truncation, so long documents lose redundancy instead of losing their ending.</li>
+            <li>Persisted job state at every stage so a failed run resumes instead of restarting from the client.</li>
+            <li>Pushed over WebSocket rather than polling, which would have multiplied read load per in-flight job.</li>
+          </ul>
+        </section>
 
-    <div class="p-6 border-t border-white/10 flex justify-end">
-      <button onclick="closeModal('modalFace')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
-        Close
-      </button>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Backend</p>
+              <p class="text-white font-semibold">REST API, Async Workers, WebSocket, Python</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">AI / ML</p>
+              <p class="text-white font-semibold">Amazon Bedrock, Titan Embeddings, K-Means</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Architecture</p>
+              <p class="text-white font-semibold">Background processing, real-time delivery</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Cloud</p>
+              <p class="text-white font-semibold">AWS</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="p-6 border-t border-white/10 flex justify-end">
+        <button onclick="closeModal('modalSummarizer')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">Close</button>
+      </div>
     </div>
   </div>
-</div>
 
 
-<!-- Modal: 24/7 Data Ingestion & Scraping Pipeline -->
-<div id="modalScraper" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
-    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
-      <div>
-        <h3 class="text-2xl font-bold text-white">24/7 Data Ingestion & Scraping Pipeline</h3>
-        <p class="text-sm text-gray-400 mt-1">
-          Cost-efficient serverless AWS pipeline for scraping, storing raw data, transforming records, and serving structured app-ready outputs.
-        </p>
+  <!-- Modal: Android Device Farm -->
+  <div id="stf" class="modal hidden fixed inset-0 bg-black/75 items-center justify-center z-50 p-4">
+    <div class="modal-panel bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+        <div>
+          <h3 class="text-2xl font-bold text-white">24/7 Android Device Farm Automation (ADB + STF)</h3>
+          <p class="text-sm text-gray-400 mt-1">
+            Software orchestrating a cluster of real physical Android devices continuously, with async execution and full telemetry.
+          </p>
+        </div>
+        <button onclick="closeModal('stf')" aria-label="Close" class="text-gray-400 hover:text-white transition text-2xl leading-none">&times;</button>
       </div>
-      <button onclick="closeModal('modalScraper')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
-        &times;
-      </button>
-    </div>
 
-    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Overview</h4>
-        <p class="text-sm leading-relaxed text-gray-300">
-          Built a production-grade <span class="text-white">serverless scraping and data ingestion platform</span> on AWS designed for cost efficiency, reliability, and scalable background execution. The system operates continuously 24/7 using event-driven AWS services to trigger scraping jobs, store raw payloads for traceability, process and normalize records asynchronously, and publish structured data for application consumption. This creates a clean separation between raw ingestion and business-ready datasets while keeping infrastructure costs low.
-        </p>
-      </section>
+      <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Architecture</h4>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">1) Event-driven scraping</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Used <span class="text-white">AWS Lambda</span> with scheduled and queue-based triggers so scraping runs continuously in an event-driven manner while remaining cost-efficient compared to always-on servers.
-            </p>
+        <section>
+          <h4 class="text-lg font-semibold text-white mb-3">Scale &amp; results</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">40</p>
+              <p class="text-xs text-gray-400 mt-1">Physical devices</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">8k+</p>
+              <p class="text-xs text-gray-400 mt-1">Automated tasks / day</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">24/7</p>
+              <p class="text-xs text-gray-400 mt-1">Continuous operation</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="mono text-xl text-white">100%</p>
+              <p class="text-xs text-gray-400 mt-1">Task traceability</p>
+            </div>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">2) Raw data lake</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Stored every raw response and payload in <span class="text-white">Amazon S3</span> to preserve history, support reprocessing, and maintain a full audit trail of collected source data.
-            </p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">3) Async processing pipeline</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Routed ingestion events through <span class="text-white">SQS</span> and background processors to validate, clean, deduplicate, and enrich records without blocking the scraping flow.
-            </p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">4) App-ready database</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Wrote normalized data into <span class="text-white">DynamoDB</span> for scalable access and into <span class="text-white">Aurora Serverless</span> for relational querying required by the application.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Production architecture</h4>
-        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
-          <ol class="list-decimal ml-5 space-y-1">
-            <li><span class="text-white font-semibold">Trigger Layer:</span> scheduled start scraping through Lambda, so compute runs only when required.</li>
-            <li><span class="text-white font-semibold">Queue Layer:</span> ingestion events are buffered through asynchronous messaging to decouple scraping from downstream processing.</li>
-            <li><span class="text-white font-semibold">Raw Storage:</span> all original payloads and snapshots are stored in Amazon S3 as the source-of-truth data lake.</li>
-            <li><span class="text-white font-semibold">Processing Layer:</span> serverless or queue-driven workers clean, validate, normalize, classify, and enrich records before publishing them forward.</li>
-            <li><span class="text-white font-semibold">Structured Storage:</span> transformed data is written into DynamoDB and Aurora for app queries and operational usage.</li>
-            <li><span class="text-white font-semibold">Monitoring & Reliability:</span> retries, dead-letter handling, logging, and cloud monitoring keep the pipeline stable without maintaining always-on infrastructure.</li>
-          </ol>
-        </div>
-      </section>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Overview</h4>
+          <p class="text-sm leading-relaxed text-gray-300">
+            Most backend systems fail gracefully because their dependencies are software. This one
+            controls <span class="text-white">real hardware</span> — devices that overheat, drop USB
+            connections, run out of battery, and hang. The engineering problem was building an
+            orchestration layer that treats an unreliable physical fleet as a dependable resource pool.
+          </p>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">AWS services &amp; tools</h4>
-        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
-          <li>AWS Lambda for serverless scraping and lightweight processing</li>
-          <li>Amazon EventBridge for scheduled triggers and orchestration</li>
-          <li>Amazon S3 as the raw data lake and historical archive</li>
-          <li>DynamoDB and Aurora Serverless for structured, app-ready storage</li>
-          <li>SQS with dead-letter queues for asynchronous processing and retries</li>
-          <li>CloudWatch for monitoring, logs, and operational visibility</li>
-          <li>Python-based scraping, transformation, and pipeline orchestration</li>
-        </ul>
-      </section>
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">Core capabilities</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">Parallel device execution</p>
+              <p class="text-sm text-gray-300 mt-1">Dozens of real Android devices run simultaneously, turning a hardware cluster into a schedulable pool.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">Async task processing</p>
+              <p class="text-sm text-gray-300 mt-1">Queue-driven dispatch means long-running device workflows never block the control plane.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">Real-time control &amp; monitoring</p>
+              <p class="text-sm text-gray-300 mt-1">Device state, execution logs, and task progress are tracked live for full operational visibility.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">Health-aware task routing</p>
+              <p class="text-sm text-gray-300 mt-1">Tasks are assigned based on device availability, health, and historical performance — unhealthy devices are drained rather than retried into.</p>
+            </div>
+          </div>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Key outcomes</h4>
-        <p class="text-sm leading-relaxed text-gray-300">
-          Designed the system around real production needs: continuous 24/7 operation, low operating cost, raw-to-structured data flow, replayability, fault tolerance, and scalable ingestion. This allows the application layer to consume clean and queryable data while preserving the original scraped content for analytics, debugging, and reprocessing.
-        </p>
-      </section>
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">Architecture</h4>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+            <ol class="list-decimal ml-5 space-y-1">
+              <li><span class="text-white font-semibold">Device Layer:</span> physical Android devices exposed for remote access and control via STF.</li>
+              <li><span class="text-white font-semibold">Control Layer:</span> backend services issue ADB commands, execute workflows, and collect telemetry.</li>
+              <li><span class="text-white font-semibold">Queue Layer:</span> async job queues distribute tasks across the fleet and decouple submission from execution.</li>
+              <li><span class="text-white font-semibold">Processing Layer:</span> workers handle execution, retries, and workflow coordination.</li>
+              <li><span class="text-white font-semibold">Data Layer:</span> device logs, activity history, and execution records stored for traceability and analytics.</li>
+              <li><span class="text-white font-semibold">Reliability Layer:</span> continuous health checks, automatic recovery, and structured logging keep the fleet running unattended.</li>
+            </ol>
+          </div>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
-        <div class="grid sm:grid-cols-2 gap-3 text-sm">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Cloud</p>
-            <p class="text-white font-semibold">AWS</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Compute</p>
-            <p class="text-white font-semibold">Lambda, Event-Driven Workers</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Storage</p>
-            <p class="text-white font-semibold">S3, DynamoDB, Aurora Serverless</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Language</p>
-            <p class="text-white font-semibold">Python</p>
-          </div>
-        </div>
-      </section>
-    </div>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Outcome</h4>
+          <p class="text-sm leading-relaxed text-gray-300">
+            A production SW/HW system that runs unattended around the clock, executing automation
+            workflows at scale and collecting structured data with full traceability — treating an
+            inherently unreliable physical fleet as a reliable service.
+          </p>
+        </section>
 
-    <div class="p-6 border-t border-white/10 flex justify-end">
-      <button onclick="closeModal('modalScraper')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
-        Close
-      </button>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Device Control</p>
+              <p class="text-white font-semibold">ADB, STF</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Orchestration</p>
+              <p class="text-white font-semibold">Python, async job queues</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Data</p>
+              <p class="text-white font-semibold">Task history, logs, telemetry storage</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Hardware</p>
+              <p class="text-white font-semibold">Real Android device cluster</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="p-6 border-t border-white/10 flex justify-end">
+        <button onclick="closeModal('stf')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">Close</button>
+      </div>
     </div>
   </div>
-</div>
 
 
-<!-- Modal: Production REST API Platform -->
-<div id="modalBackend" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-  <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
-    <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
-      <div>
-        <h3 class="text-2xl font-bold text-white">Production REST API Platform</h3>
-        <p class="text-sm text-gray-400 mt-1">
-          Enterprise-grade AWS backend built for reliable synchronous APIs, asynchronous processing, and real-time client updates.
-        </p>
+  <!-- Modal: Face Recognition -->
+  <div id="modalFace" class="modal hidden fixed inset-0 bg-black/75 items-center justify-center z-50 p-4">
+    <div class="modal-panel bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+        <div>
+          <h3 class="text-2xl font-bold text-white">Production Face Recognition Platform</h3>
+          <p class="text-sm text-gray-400 mt-1">
+            Real-time face search combining GPU embedding extraction, OpenSearch vector retrieval, S3 media, and PostgreSQL metadata.
+          </p>
+        </div>
+        <button onclick="closeModal('modalFace')" aria-label="Close" class="text-gray-400 hover:text-white transition text-2xl leading-none">&times;</button>
       </div>
-      <button onclick="closeModal('modalBackend')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
-        &times;
-      </button>
-    </div>
 
-    <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Overview</h4>
-        <p class="text-sm leading-relaxed text-gray-300">
-          Built a production-level REST API platform on AWS designed to connect directly with client applications and support both <span class="text-white">synchronous</span> and <span class="text-white">asynchronous</span> workflows. The system was engineered for reliability, scalability, and low-latency communication, combining real-time API responses with background job processing for heavier workloads.
-        </p>
-      </section>
+      <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+        <!--
+          NOTE: no Scale & Results block here on purpose — you have not verified
+          the index size or query latency yet. Add one once you pull the numbers:
+          vector count, p95 search latency, embedding dimension.
+        -->
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Overview</h4>
+          <p class="text-sm leading-relaxed text-gray-300">
+            A face recognition platform where the client sends an image, the system extracts a facial
+            embedding, runs approximate nearest-neighbour search against stored vectors in
+            <span class="text-white">Amazon OpenSearch</span>, then assembles the response from the
+            matched image in <span class="text-white">S3</span> and structured metadata in
+            <span class="text-white">PostgreSQL</span> — designed for low-latency retrieval at index scale.
+          </p>
+        </section>
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Core capabilities</h4>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">Synchronous API flows</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Designed REST endpoints for immediate request-response operations where clients receive fast, reliable results in real time.
-            </p>
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">Recognition pipeline</h4>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">1) Client image request</p>
+              <p class="text-sm text-gray-300 mt-1">The client uploads an image to the API, starting the recognition workflow in real time.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">2) Embedding extraction</p>
+              <p class="text-sm text-gray-300 mt-1">An <span class="text-white">InsightFace</span> model on GPU infrastructure detects the face and produces its embedding vector.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">3) Vector similarity search</p>
+              <p class="text-sm text-gray-300 mt-1">The query vector is matched against the <span class="text-white">OpenSearch</span> index to find the nearest neighbours and their identity references.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-sm font-semibold text-white">4) Media + metadata assembly</p>
+              <p class="text-sm text-gray-300 mt-1">The matched image is fetched from S3 and enriched with PostgreSQL metadata into a single API response.</p>
+            </div>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">Asynchronous job processing</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Implemented background processing pipelines for long-running tasks, allowing the API to return immediately while heavy jobs continue asynchronously.
-            </p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">Real-time client updates</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Used <span class="text-white">WebSocket</span> communication so clients can wait for live job status updates and receive results as soon as processing is completed.
-            </p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-sm font-semibold text-white">Production reliability</p>
-            <p class="text-sm text-gray-300 mt-1">
-              Built with a production mindset including scalability, fault tolerance, decoupled services, and database patterns suited for real enterprise workloads.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="space-y-3">
-        <h4 class="text-lg font-semibold text-white">Architecture</h4>
-        <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
-          <ol class="list-decimal ml-5 space-y-1">
-            <li><span class="text-white font-semibold">Client Layer:</span> applications connect to the backend through REST APIs for synchronous operations and WebSocket channels for live status tracking.</li>
-            <li><span class="text-white font-semibold">API Layer:</span> backend services validate requests, execute direct database operations, or dispatch heavy jobs to asynchronous workers.</li>
-            <li><span class="text-white font-semibold">Data Layer:</span> <span class="text-white">DynamoDB</span> is used for scalable key-value or session-oriented data, while <span class="text-white">Amazon Aurora</span> handles structured relational workloads and transactional operations.</li>
-            <li><span class="text-white font-semibold">Search / AI Retrieval Layer:</span> <span class="text-white">OpenSearch</span> vector indexing enables semantic search and fast retrieval for embedding-based or similarity-driven use cases.</li>
-            <li><span class="text-white font-semibold">Async Processing Layer:</span> background workers handle long-running processing jobs and publish results back to the waiting client through real-time communication channels.</li>
-            <li><span class="text-white font-semibold">Caching Layer:</span> in-memory caching with <span class="text-white">Redis (Amazon ElastiCache)</span> is used to reduce latency, offload databases, and accelerate frequently accessed query results.</li>
-            <li><span class="text-white font-semibold">Media Delivery Layer:</span> images and static assets are served via <span class="text-white">Amazon S3 + CloudFront</span> CDN for low-latency global delivery and edge caching.</li>
-          </ol>
-        </div>
-      </section>
+        <section class="space-y-3">
+          <h4 class="text-lg font-semibold text-white">Architecture</h4>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-4 text-sm text-gray-300">
+            <ol class="list-decimal ml-5 space-y-1">
+              <li><span class="text-white font-semibold">Client Layer:</span> image request for real-time identification.</li>
+              <li><span class="text-white font-semibold">Inference Layer:</span> GPU-backed model extracts the embedding.</li>
+              <li><span class="text-white font-semibold">Vector Search Layer:</span> OpenSearch indexes embeddings for approximate nearest-neighbour retrieval.</li>
+              <li><span class="text-white font-semibold">Object Storage:</span> matched media retrieved from S3 by identity reference.</li>
+              <li><span class="text-white font-semibold">Metadata Layer:</span> PostgreSQL holds structured identity and contextual data.</li>
+              <li><span class="text-white font-semibold">API Layer:</span> combines all three into one response.</li>
+            </ol>
+          </div>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Highlights</h4>
-        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
-          <li>Designed a backend that supports both immediate API responses and deferred processing workflows</li>
-          <li>Integrated DynamoDB, Aurora, and OpenSearch based on workload type and access pattern</li>
-          <li>Enabled real-time job progress and completion delivery using WebSocket connections</li>
-          <li>Built the service as a scalable, production-oriented AWS backend suitable for real client-facing systems</li>
-          <li>Applied cloud-native architectural patterns for reliability, responsiveness, and maintainability</li>
-          <li>Integrated Redis caching for database queries to significantly reduce latency and database load</li>
-          <li>Optimized image delivery using S3 with CloudFront CDN for global caching and performance</li>
-        </ul>
-      </section>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Engineering decisions</h4>
+          <ul class="list-disc ml-5 text-sm space-y-1.5 text-gray-300">
+            <li>Separated vector search, object storage, and relational metadata into three specialized stores rather than forcing one engine to do all three badly.</li>
+            <li>Used approximate rather than exact nearest-neighbour search, trading a small amount of recall for latency that stays flat as the index grows.</li>
+            <li>Kept GPU inference isolated from the API tier so model workload and request workload scale independently.</li>
+          </ul>
+        </section>
 
-      <section class="space-y-2">
-        <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
-        <div class="grid sm:grid-cols-2 gap-3 text-sm">
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Backend</p>
-            <p class="text-white font-semibold">REST API, WebSocket, Python</p>
+        <section class="space-y-2">
+          <h4 class="text-lg font-semibold text-white">Tech Stack</h4>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Machine Learning</p>
+              <p class="text-white font-semibold">InsightFace, PyTorch</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Vector Database</p>
+              <p class="text-white font-semibold">Amazon OpenSearch</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Storage</p>
+              <p class="text-white font-semibold">Amazon S3, PostgreSQL</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+              <p class="text-gray-400">Infrastructure</p>
+              <p class="text-white font-semibold">REST API, Python, GPU inference, AWS</p>
+            </div>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Databases</p>
-            <p class="text-white font-semibold">DynamoDB, Amazon Aurora</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Search / Vector DB</p>
-            <p class="text-white font-semibold">Amazon OpenSearch</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-            <p class="text-gray-400">Cloud</p>
-            <p class="text-white font-semibold">AWS EKS, Redis (Amazon ElastiCache), S3 + CloudFront</p>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
 
-    <div class="p-6 border-t border-white/10 flex justify-end">
-      <button onclick="closeModal('modalBackend')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
-        Close
-      </button>
+      <div class="p-6 border-t border-white/10 flex justify-end">
+        <button onclick="closeModal('modalFace')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">Close</button>
+      </div>
     </div>
   </div>
-</div>
-
-
-
-  <!-- Modal: Face Recognition (kept as-is in your original) -->
-  <!-- (Your existing modalFace / modalChatbot / modalGIS can remain unchanged) -->
 
 
   <!-- Modal: Multi-Agent AI Social Platform -->
-  <div id="modalAgents" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-    <div class="bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
+  <div id="modalAgents" class="modal hidden fixed inset-0 bg-black/75 items-center justify-center z-50 p-4">
+    <div class="modal-panel bg-gray-900 rounded-2xl w-full max-w-3xl text-gray-300 shadow-xl border border-white/10">
       <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
         <div>
-          <h3 class="text-2xl font-bold text-white">Multi-Agent AI Social Platform (Ongoing)</h3>
-          <p class="text-sm text-gray-400 mt-1">
-            An AI-only social network where autonomous agents debate and collaborate on complex global problems.
-          </p>
+          <h3 class="text-2xl font-bold text-white">Multi-Agent AI Social Platform <span class="text-sm text-gray-500 font-normal">(Ongoing)</span></h3>
+          <p class="text-sm text-gray-400 mt-1">An AI-only social network where autonomous agents debate and collaborate on complex problems.</p>
         </div>
-        <button onclick="closeModal('modalAgents')" class="text-gray-400 hover:text-white transition text-2xl leading-none">
-          &times;
-        </button>
+        <button onclick="closeModal('modalAgents')" aria-label="Close" class="text-gray-400 hover:text-white transition text-2xl leading-none">&times;</button>
       </div>
 
       <div class="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
         <p class="text-sm leading-relaxed text-gray-300">
-          Building an AI-only social platform where autonomous agents can post, comment, disagree, and cooperate to work through complex political,
-          financial, and theoretical problems. Each agent has its own personality, sentiment, perspective, and agenda, which shapes how it argues and
-          contributes, creating a more realistic and diverse “AI society” that can produce deeper outcomes over time.
+          A social platform populated entirely by autonomous agents that post, comment, disagree, and
+          cooperate on political, financial, and theoretical problems. Each agent carries its own
+          personality, sentiment, and agenda, which shapes how it argues — producing an "AI society"
+          whose threads develop positions no single agent started with.
         </p>
-
         <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
-          <li>Agents post/comment and form long-running discussion threads</li>
-          <li>Distinct personalities + sentiment-driven behavior per agent</li>
-          <li>Emergent collaboration/conflict to refine ideas over time</li>
+          <li>Agents post and comment, forming long-running discussion threads</li>
+          <li>Distinct personalities and sentiment-driven behaviour per agent</li>
+          <li>Emergent collaboration and conflict that refines ideas over time</li>
         </ul>
       </div>
 
       <div class="p-6 border-t border-white/10 flex justify-end">
-        <button onclick="closeModal('modalAgents')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">
-          Close
-        </button>
+        <button onclick="closeModal('modalAgents')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">Close</button>
       </div>
     </div>
   </div>
 
 
   <!-- Modal: Student-Teacher LLM -->
-  <div id="modalLLM" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
-      <h3 class="text-xl font-bold mb-2 text-white">Student-Teacher LLM Training System</h3>
-      <p class="text-sm mb-4">
-        Fine-tuned the Phi-2.7 model locally using a student–teacher setup where ChatGPT converts unstructured text into structured JSON.
-      </p>
-      <ul class="list-disc ml-5 text-sm mb-4">
-        <li>Tech: PyTorch, Phi-2.7, Ollama, JSON schema extraction</li>
-      </ul>
-      <a href="https://github.com/ramiha97/student-teacher-llm" target="_blank" class="text-[#00aaff] hover:underline block mb-4">View GitHub →</a>
-      <button onclick="closeModal('modalLLM')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+  <div id="modalLLM" class="modal hidden fixed inset-0 bg-black/75 items-center justify-center z-50 p-4">
+    <div class="modal-panel bg-gray-900 rounded-2xl w-full max-w-lg text-gray-300 border border-white/10">
+      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+        <h3 class="text-xl font-bold text-white">Student-Teacher LLM Training System</h3>
+        <button onclick="closeModal('modalLLM')" aria-label="Close" class="text-gray-400 hover:text-white transition text-2xl leading-none">&times;</button>
+      </div>
+      <div class="p-6 space-y-4">
+        <p class="text-sm leading-relaxed text-gray-300">
+          Fine-tuned Phi-2.7 locally using a student–teacher setup: a larger teacher model converts
+          unstructured text into structured JSON, and that output becomes the training data for the
+          smaller student model.
+        </p>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>Tech: PyTorch, Phi-2.7, Ollama, JSON schema extraction</li>
+        </ul>
+        <a href="https://github.com/ramiha97/student-teacher-llm" target="_blank" rel="noopener" class="text-[#00aaff] hover:underline inline-block">View on GitHub →</a>
+      </div>
+      <div class="p-6 border-t border-white/10 flex justify-end">
+        <button onclick="closeModal('modalLLM')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">Close</button>
+      </div>
     </div>
   </div>
+
 
   <!-- Modal: AI Video Generator -->
-  <div id="modalVideo" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-gray-900 p-6 rounded-lg w-[90%] max-w-lg text-gray-300">
-      <h3 class="text-xl font-bold mb-2 text-white">AI Video Generator</h3>
-      <p class="text-sm mb-4">
-        Built an automated pipeline that generates 1–3 minute videos from structured JSON, including visuals, voiceovers, music, and FFmpeg effects.
-      </p>
-      <ul class="list-disc ml-5 text-sm mb-4">
-        <li>Tech: Python, FFmpeg, Veo3, ElevenLabs, Leonardo AI</li>
-      </ul>
-      <a href="https://github.com/ramiha97/video_generator" target="_blank" class="text-[#00aaff] hover:underline block mb-4">View GitHub →</a>
-      <button onclick="closeModal('modalVideo')" class="bg-primary text-white px-4 py-2 rounded-lg hover:opacity-90">Close</button>
+  <div id="modalVideo" class="modal hidden fixed inset-0 bg-black/75 items-center justify-center z-50 p-4">
+    <div class="modal-panel bg-gray-900 rounded-2xl w-full max-w-lg text-gray-300 border border-white/10">
+      <div class="flex items-start justify-between gap-4 p-6 border-b border-white/10">
+        <h3 class="text-xl font-bold text-white">AI Video Generator</h3>
+        <button onclick="closeModal('modalVideo')" aria-label="Close" class="text-gray-400 hover:text-white transition text-2xl leading-none">&times;</button>
+      </div>
+      <div class="p-6 space-y-4">
+        <p class="text-sm leading-relaxed text-gray-300">
+          An automated pipeline that generates 1–3 minute videos from structured JSON — visuals,
+          voiceover, music, and FFmpeg effects assembled without manual editing.
+        </p>
+        <ul class="list-disc ml-5 text-sm space-y-1 text-gray-300">
+          <li>Tech: Python, FFmpeg, Veo3, ElevenLabs, Leonardo AI</li>
+        </ul>
+        <a href="https://github.com/ramiha97/video_generator" target="_blank" rel="noopener" class="text-[#00aaff] hover:underline inline-block">View on GitHub →</a>
+      </div>
+      <div class="p-6 border-t border-white/10 flex justify-end">
+        <button onclick="closeModal('modalVideo')" class="bg-primary text-white px-5 py-2 rounded-lg hover:opacity-90 transition">Close</button>
+      </div>
     </div>
   </div>
 
 
-  <!-- Modal JS -->
+  <!-- ===================== SCRIPTS ===================== -->
   <script>
+    // ---------- Modals ----------
+    // Note: modal containers use `hidden` + `flex` together. Tailwind's `hidden`
+    // sets display:none, so we toggle `hidden` and let `flex` take over when shown.
     function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove('hidden');
+      el.classList.add('flex');
+      document.body.classList.add('modal-open');
     }
+
     function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('hidden');
+      el.classList.remove('flex');
+      document.body.classList.remove('modal-open');
     }
+
+    function closeAllModals() {
+      document.querySelectorAll('.modal').forEach(function (m) {
+        m.classList.add('hidden');
+        m.classList.remove('flex');
+      });
+      document.body.classList.remove('modal-open');
+    }
+
+    // Close on backdrop click (but not when clicking inside the panel)
+    document.querySelectorAll('.modal').forEach(function (modal) {
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeAllModals();
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAllModals();
+    });
+
+    // ---------- Mobile nav ----------
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+
+    menuBtn.addEventListener('click', function () {
+      const isOpen = !mobileNav.classList.contains('hidden');
+      mobileNav.classList.toggle('hidden', isOpen);
+      mobileNav.classList.toggle('flex', !isOpen);
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // Close mobile nav after tapping a link
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.add('hidden');
+        mobileNav.classList.remove('flex');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
   </script>
 
 </body>
