@@ -1,22 +1,5 @@
 <!DOCTYPE html>
-<!--
-  ============================================================================
-  BEFORE PUBLISHING — replace these numbers with your real ones.
-  They currently match the resume, so if you change one, change BOTH.
 
-    p95 latency 800ms -> 180ms      | ALB TargetResponseTime (p95 statistic)
-    6 microservices                 | count them
-    65% token cost reduction        | CloudWatch > AWS/Bedrock > InvocationInputTokenCount
-    <120ms API acknowledgment       | ALB TargetResponseTime on the submit endpoint
-    500k records/day                | Lambda Invocations (Sum, daily)
-    $250/month                      | Cost Explorer, filtered by tag
-    88% Redis cache hit rate        | ElastiCache CacheHits / (CacheHits + CacheMisses)
-    80% database load reduction     | RDS/Aurora DatabaseConnections + ReadIOPS before/after
-    40 devices, 8k+ tasks/day       | count them
-    ~500k requests/day  <-- STILL A PLACEHOLDER, search "REQ-VERIFY" below
-
-  Also: add your photo (search "PHOTO") and your resume PDF (search "RESUME-PDF").
-  ============================================================================
 -->
 <html class="dark" lang="en">
 <head>
@@ -43,7 +26,6 @@
     .bg-dark { background-color: #0b141a; }
     html { scroll-behavior: smooth; }
     body.modal-open { overflow: hidden; }
-    /* Section scroll offset so the sticky header doesn't cover headings */
     section[id] { scroll-margin-top: 5rem; }
     .glow { box-shadow: 0 0 60px -18px rgba(0,170,255,.55); }
     ::selection { background: #00aaff; color: #0b141a; }
@@ -103,7 +85,6 @@
           failure modes.
         </p>
 
-        <!-- Certifications: these are a differentiator, so they go above the fold -->
         <div class="flex flex-wrap gap-3 mt-6">
           <span class="mono text-xs border border-[#00aaff]/40 text-[#00aaff] px-3 py-1.5 rounded-full">
             AWS Solutions Architect – Professional
@@ -115,18 +96,16 @@
 
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="#projects" class="bg-primary px-6 py-3 rounded-lg font-bold text-white hover:opacity-90 transition">View Projects</a>
-          <!-- RESUME-PDF: upload your PDF next to index.html and keep this link -->
-          <a href="Rami-Hamzi-Resume.pdf" target="_blank" class="border border-gray-700 px-6 py-3 rounded-lg font-bold text-gray-200 hover:border-[#00aaff] hover:text-[#00aaff] transition">Resume</a>
           <a href="#contact" class="bg-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-700 transition">Get in Touch</a>
         </div>
       </div>
 
       <!--
-        PHOTO: the old stock "neuron" image was hot-linked from a news site.
-        Best option is a real photo of you — drop it in as photo.jpg and swap this
-        whole block for:
-          <img src="photo.jpg" alt="Rami Hamzi" class="rounded-2xl w-full glow border border-gray-800 object-cover">
-        Until then, this metrics panel does a better job than stock art.
+        PHOTO: to use a real photo of yourself, drop photo.jpg next to index.html
+        and replace this entire <div> with:
+          <div class="lg:w-[42%] w-full">
+            <img src="photo.jpg" alt="Rami Hamzi" class="rounded-2xl w-full glow border border-gray-800 object-cover">
+          </div>
       -->
       <div class="lg:w-[42%] w-full">
         <div class="rounded-2xl border border-gray-800 bg-gray-900/60 p-6 glow">
@@ -436,7 +415,6 @@
     <div class="flex justify-center gap-6 mt-8 text-gray-400">
       <a href="https://www.linkedin.com/in/rami-hamzi-1a415721b" target="_blank" rel="noopener" class="hover:text-[#00aaff] transition">LinkedIn</a>
       <a href="https://github.com/ramiha97" target="_blank" rel="noopener" class="hover:text-[#00aaff] transition">GitHub</a>
-      <a href="Rami-Hamzi-Resume.pdf" target="_blank" class="hover:text-[#00aaff] transition">Resume (PDF)</a>
     </div>
   </section>
 
@@ -464,7 +442,6 @@
 
       <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
 
-        <!-- Scale & results: the block that turns a description into evidence -->
         <section>
           <h4 class="text-lg font-semibold text-white mb-3">Scale &amp; results</h4>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -1152,8 +1129,8 @@
   <!-- ===================== SCRIPTS ===================== -->
   <script>
     // ---------- Modals ----------
-    // Note: modal containers use `hidden` + `flex` together. Tailwind's `hidden`
-    // sets display:none, so we toggle `hidden` and let `flex` take over when shown.
+    // Containers carry both `hidden` and `flex`; Tailwind's `hidden` sets
+    // display:none, so we toggle `hidden` and let `flex` take over when shown.
     function openModal(id) {
       const el = document.getElementById(id);
       if (!el) return;
