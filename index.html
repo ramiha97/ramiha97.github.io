@@ -177,7 +177,7 @@
           <li>Led the post-funding platform redesign — prototype to 6 event-driven microservices on EKS, weekly manual releases to daily automated deploys.</li>
           <li>Shipped a production LLM pipeline end-to-end (Bedrock, Titan embeddings, K-Means selection, async + WebSocket) — cut token cost 65%.</li>
           <li>Built a serverless 24/7 ingestion pipeline (Lambda, EventBridge, SQS/DLQ, S3 → DynamoDB/Aurora) — 500k records/day at $250/month with full replay.</li>
-          <li>Cut p95 latency 10x (100ms → 10ms) by redesigning Aurora access patterns — covering indexes, restructured queries, and a dedicated reader endpoint — with Redis caching removing ~80% of database load.</li>
+          <li>Cut p95 latency (300ms → 80-120ms) by redesigning Aurora access patterns — covering indexes, restructured queries, and a dedicated reader endpoint — with Redis caching removing ~80% of database load.</li>
           <li>Built a 24/7 Android device farm (ADB + STF) orchestrating 40 physical devices, 8k+ automated tasks/day.</li>
           <li>Led 4 engineers; owned on-call, security (least-privilege IAM, IRSA), and CloudWatch observability.</li>
         </ul>
@@ -446,8 +446,8 @@
           <h4 class="text-lg font-semibold text-white mb-3">Scale &amp; results</h4>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-              <p class="mono text-xl text-white">10ms</p>
-              <p class="text-xs text-gray-400 mt-1">p95 latency (from 100ms)</p>
+              <p class="mono text-xl text-white">80-120ms</p>
+              <p class="text-xs text-gray-400 mt-1">p95 latency (from 300ms)</p>
             </div>
             <div class="bg-white/5 border border-white/10 rounded-xl p-4">
               <p class="mono text-xl text-white">88%</p>
